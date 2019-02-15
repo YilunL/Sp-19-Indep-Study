@@ -4,20 +4,20 @@
 
 u_firms_unint <- function(){
   # offer by firm A to downstream firm 1
-  w_1A <<- 1/3
-  x_1A <<- 0.5
+  w_1A <<- 1
+  x_1A <<- 1
   
   # offer by firm A to downstream firm 2
-  w_2A <<- 1/3
-  x_2A <<- 0.5
+  w_2A <<- 1
+  x_2A <<- 1
   
   # offer by firm B to downstream firm 1
-  w_1B <<- 1/3
-  x_1B <<- 0.5
+  w_1B <<- 1
+  x_1B <<- 1
   
   # offer by firm B to downstream firm 2
-  w_2B <<- 1/3
-  x_2B <<- 0.5
+  w_2B <<- 1
+  x_2B <<- 1
   
   # turn offers into vectors
   offer_1A <- c(w_1A, x_1A)
@@ -65,16 +65,16 @@ u_firms_int <- function(){
   x_1A <<- 1
   
   # offer by firm A to downstream firm 2
-  w_2A <<- 1/3
-  x_2A <<- 0.5
+  w_2A <<- .421
+  x_2A <<- .421
   
   # offer by firm B to downstream firm 1
-  w_1B <<- 1/3
-  x_1B <<- 0.5
+  w_1B <<- .421
+  x_1B <<- .421
   
   # offer by firm B to downstream firm 2
-  w_2B <<- 1/3
-  x_2B <<- 0.5
+  w_2B <<- .421
+  x_2B <<- .421
   
   # turn offers into vectors
   offer_1A <- c(w_1A, x_1A)
@@ -89,7 +89,7 @@ u_firms_int <- function(){
     p_1 <<- d_firm_cd_price(offer_1A, offer_1B)
     p_2 <<- d_firm_cd_price(offer_2A, offer_2B)
     
-    markup <<- 0.35  # integrated firm has an uncompetitive incentive
+    markup <<- .6  # integrated firm has an uncompetitive incentive
     p_1 <<- p_1 + markup
     
     # seeing prices, downstream firms produce (or don't)

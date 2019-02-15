@@ -4,14 +4,13 @@
 
 setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
 
-# source("upstream_firms.R")
-source("downstream_firms_linear.R")
-source("downstream_firms_cd.R")
+source("upstream_firms_test.R")
+source("downstream_firms_cd_test.R")
 source("upstream_firms_test.R")
 
-k = 0.4 # amount captured if other firm raises price by $1 (cross-price elasticity)
+k = 0.91 # amount captured if other firm raises price by $1 (cross-price elasticity)
 
-integrated = 1  # is Firm A and Firm 1 vertically integrated
+integrated = 0  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
 cobb_douglas = 1  # downstream firm with cobb-douglas production function
 
