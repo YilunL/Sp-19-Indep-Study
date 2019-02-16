@@ -16,7 +16,7 @@ cobb_douglas = 1  # downstream firm with cobb-douglas production function
 
 set.seed(100) #set a random seed
 
-a = 0.5  #set cobb-douglas production params <1
+a = 0.9  #set cobb-douglas production params <1
 b = 1 - a  #cobb-douglas CRS
 
 #####################################################################
@@ -48,16 +48,17 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 # 2a. Downstream production - complete information
 #####################################################################
 optim_A = 0
-
+  
+  
 if (cobb_douglas == 1){
   if (integrated == 0){
-    optim_result <- optim(c(.325,.325), u_firms_unint, method = "BFGS", control = list(maxit = 10000))
+    optim_result <- optim(c(0.33,0.33), u_firms_unint, method = "BFGS", control = list(maxit = 10000, reltol = 1E-12))
     # u_firms_unint(c(0.3,0.3))
     x_A <- x_1A + x_2A
     x_B <- x_1B + x_2B
     w_A <- (w_1A * x_1A + w_2A * x_2A) / x_A
     w_B <- (w_1B * x_1B + w_2B * x_2B) / x_B
-    eq_cd_unint <- c(w_A, w_B, x_A, x_B, p_1, p_2, q_1, q_2) ## TODO: Update weighted average w_A, w_B
+    eq_cd_unint <- c(w_A, w_B, x_A, x_B, p_1, p_2, q_1, q_2) 
   }
   if (integrated == 1){
     u_firms_int()
@@ -65,7 +66,7 @@ if (cobb_douglas == 1){
     x_B <- x_1B + x_2B
     w_A <- (w_1A * x_1A + w_2A * x_2A) / x_A
     w_B <- (w_1B * x_1B + w_2B * x_2B) / x_B
-    eq_cd_int <- c(w_A, w_B, x_A, x_B, p_1, p_2, q_1, q_2) ## TODO: Update weighted average w_A, w_B
+    eq_cd_int <- c(w_A, w_B, x_A, x_B, p_1, p_2, q_1, q_2) 
   }
 }
 

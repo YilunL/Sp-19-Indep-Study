@@ -11,16 +11,16 @@ u_firms_unint <- function(w){
     w_2A <<- w[2]
     
     # offer by firm B to downstream firm 1
-    w_1B <<- 0.3242502
+    w_1B <<- 0.3
     
     # offer by firm B to downstream firm 2
-    w_2B <<- 0.3242502
+    w_2B <<- 0.3
   } else {
     # offer by firm A to downstream firm 1
-    w_1A <<- 0.1927547
+    w_1A <<- 0.5676433
     
     # offer by firm A to downstream firm 2
-    w_2A <<- 0.1927547
+    w_2A <<- 0.5676433
     
     # offer by firm B to downstream firm 1
     w_1B <<- w[1]
