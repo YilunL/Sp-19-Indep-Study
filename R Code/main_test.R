@@ -47,12 +47,12 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 #####################################################################
 # 2a. Downstream production - complete information
 #####################################################################
-optim_A = 1
+optim_A = 0
 
 if (cobb_douglas == 1){
   if (integrated == 0){
-    # optim_result <- optim(c(0.3,0.3), u_firms_unint, method = "Nelder-Mead", control = list(maxit = 10000))
-    u_firms_unint(c(0.3,0.3))
+    optim_result <- optim(c(.325,.325), u_firms_unint, method = "BFGS", control = list(maxit = 10000))
+    # u_firms_unint(c(0.3,0.3))
     x_A <- x_1A + x_2A
     x_B <- x_1B + x_2B
     w_A <- (w_1A * x_1A + w_2A * x_2A) / x_A
