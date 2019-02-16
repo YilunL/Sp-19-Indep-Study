@@ -5,8 +5,8 @@
 # Unintegrated downstream firms
 #############################################################################
 d_firm_cd_price <- function(offer_A, offer_B) {
-  w_A <- offer_A[1]
-  w_B <- offer_B[1]
+  w_A <- offer_A
+  w_B <- offer_B
   
   if(w_A >= 0 & w_B >= 0){
     p <-
@@ -15,30 +15,16 @@ d_firm_cd_price <- function(offer_A, offer_B) {
     p <- 0
   }
   
-  
-  
   return(p)
 }
 
-
 d_firm_1_cd_unint <- function(offer_A, offer_B) {
   # Bertrand game
-  q_demand <-
+  q_1 <-
     max(1 - p_1 + k * p_2, 0)     # Differentiated product Bertrand, subst. param = k
   
-  
-  w_A <- offer_A[1]
-  w_B <- offer_B[1]
-  
-  x_1A <- offer_A[2]
-  x_1B <- offer_B[2]
-  
-  if ((x_1A >= 0) & (x_1B >= 0)) {
-    q_1 <- min(x_1A ^ a * x_1B ^ b, q_demand)
-  } else {
-    q_1 <- 0
-  }
-  
+  w_A <- offer_A
+  w_B <- offer_B
   
   pi <- p_1 * q_1 - w_A * x_1A - w_B * x_1B
   
@@ -46,6 +32,9 @@ d_firm_1_cd_unint <- function(offer_A, offer_B) {
     q_1 <- 0
     x_1A <- 0
     x_1B <- 0
+  } else {
+    x_1A <- a * q_1 * p_1 / w_A
+    x_1B <- b * q_1 * p_1 / w_B
   }
   
   return(c(x_1A, x_1B, q_1, pi))
@@ -53,20 +42,11 @@ d_firm_1_cd_unint <- function(offer_A, offer_B) {
 
 d_firm_2_cd <- function(offer_A, offer_B) {
   # Bertrand game
-  q_demand <-
-    max(1 - p_2 + k * p_1, 0)     # Differentiated product Bertrand, substitution param = 0.5
+  q_2 <-
+    max(1 - p_2 + k * p_1, 0)     # Differentiated product Bertrand, substitution param = k
   
-  w_A <- offer_A[1]
-  w_B <- offer_B[1]
-  
-  x_2A <- offer_A[2]
-  x_2B <- offer_B[2]
-  
-  if ((x_2A >= 0) & (x_2B >= 0)) {
-    q_2 <- min(x_2A ^ a * x_2B ^ b, q_demand)
-  } else {
-    q_2 <- 0
-  }
+  w_A <- offer_A
+  w_B <- offer_B
   
   pi <- p_2 * q_2 - w_A * x_2A - w_B * x_2B
   
@@ -74,6 +54,9 @@ d_firm_2_cd <- function(offer_A, offer_B) {
     q_2 <- 0
     x_2A <- 0
     x_2B <- 0
+  } else {
+    x_2A <- a * q_2 * p_2 / w_A
+    x_2B <- b * q_2 * p_2 / w_B
   }
   
   return(c(x_2A, x_2B, q_2, pi))

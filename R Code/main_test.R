@@ -8,7 +8,7 @@ source("upstream_firms_test.R")
 source("downstream_firms_cd_test.R")
 source("upstream_firms_test.R")
 
-k = 0.91 # amount captured if other firm raises price by $1 (cross-price elasticity)
+k = 0.5 # amount captured if other firm raises price by $1 (cross-price elasticity)
 
 integrated = 0  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
@@ -47,18 +47,12 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 #####################################################################
 # 2a. Downstream production - complete information
 #####################################################################
-if (linear == 1){
-  if (integrated == 0){
-    u_firms_unint()
-    x_A <- x_1A + x_2A
-    x_B <- x_1B + x_2B
-    eq_cd_unint <- c(w_A, w_B, x_A, x_B, p_1, p_2, q_1, q_2)
-  }
-}
+optim_A = 1
 
 if (cobb_douglas == 1){
   if (integrated == 0){
-    u_firms_unint()
+    # optim_result <- optim(c(0.3,0.3), u_firms_unint, method = "Nelder-Mead", control = list(maxit = 10000))
+    u_firms_unint(c(0.3,0.3))
     x_A <- x_1A + x_2A
     x_B <- x_1B + x_2B
     w_A <- (w_1A * x_1A + w_2A * x_2A) / x_A
