@@ -4,20 +4,20 @@
 
 u_firms_unint <- function(){
   # offer by firm A to downstream firm 1
-  w_1A <<- 0.489
-  x_1A <<- 0.809
+  w_1A <<- 1
+  x_1A <<- 1
   
   # offer by firm A to downstream firm 2
-  w_2A <<- 0.489
-  x_2A <<- 0.809
+  w_2A <<- 1
+  x_2A <<- 1
   
   # offer by firm B to downstream firm 1
-  w_1B <<- 0.1737
-  x_1B <<- 0.569
+  w_1B <<- 1
+  x_1B <<- 1
   
   # offer by firm B to downstream firm 2
-  w_2B <<- 0.1737
-  x_2B <<- 0.569
+  w_2B <<- 1
+  x_2B <<- 1
   
   # turn offers into vectors
   offer_1A <- c(w_1A, x_1A)

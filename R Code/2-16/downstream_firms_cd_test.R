@@ -18,15 +18,13 @@ d_firm_cd_price <- function(offer_A, offer_B) {
   return(p)
 }
 
-d_firm_1_cd_unint <- function(offer_A, offer_B, p) {
-  w_A <- offer_A
-  w_B <- offer_B
-  p_1 <- p[1]
-  p_2 <- p[2]
-  
+d_firm_1_cd_unint <- function(offer_A, offer_B) {
   # Bertrand game
   q_1 <-
     max(1 - p_1 + k * p_2, 0)     # Differentiated product Bertrand, subst. param = k
+  
+  w_A <- offer_A
+  w_B <- offer_B
   
   x_1A <- a * q_1 * p_1 / w_A     # use cobb-douglass to optimize inputs
   x_1B <- b * q_1 * p_1 / w_B
@@ -43,14 +41,13 @@ d_firm_1_cd_unint <- function(offer_A, offer_B, p) {
   return(c(x_1A, x_1B, q_1, pi))
 }
 
-d_firm_2_cd <- function(offer_A, offer_B, p) {
-  w_A <- offer_A
-  w_B <- offer_B
-  p_1 <- p[1]
-  p_2 <- p[2]
+d_firm_2_cd <- function(offer_A, offer_B) {
   # Bertrand game
   q_2 <-
     max(1 - p_2 + k * p_1, 0)     # Differentiated product Bertrand, substitution param = k
+  
+  w_A <- offer_A
+  w_B <- offer_B
   
   x_2A <- a * q_2 * p_2 / w_A
   x_2B <- b * q_2 * p_2 / w_B
