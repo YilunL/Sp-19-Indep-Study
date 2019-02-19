@@ -28,8 +28,8 @@ d_firm_1_cd_unint <- function(offer_A, offer_B, p) {
   q_1 <-
     max(1 - p_1 + k * p_2, 0)     # Differentiated product Bertrand, subst. param = k
   
-  x_1A <- a * q_1 * p_1 / w_A     # use cobb-douglass to optimize inputs
-  x_1B <- b * q_1 * p_1 / w_B
+  x_1A <- a * q_1 * ((a/b)^b + (a/b)^(-a))*(w_B/w_A)^b
+  x_1B <- b * q_1 * ((a/b)^b + (a/b)^(-a))*(w_A/w_B)^a
   
   pi <- p_1 * q_1 - w_A * x_1A - w_B * x_1B
   
@@ -52,8 +52,8 @@ d_firm_2_cd <- function(offer_A, offer_B, p) {
   q_2 <-
     max(1 - p_2 + k * p_1, 0)     # Differentiated product Bertrand, substitution param = k
   
-  x_2A <- a * q_2 * p_2 / w_A
-  x_2B <- b * q_2 * p_2 / w_B
+  x_2A <- a * q_2 * ((a/b)^b + (a/b)^(-a))*(w_B/w_A)^b
+  x_2B <- b * q_2 * ((a/b)^b + (a/b)^(-a))*(w_A/w_B)^a
   
   pi <- p_2 * q_2 - w_A * x_2A - w_B * x_2B
   

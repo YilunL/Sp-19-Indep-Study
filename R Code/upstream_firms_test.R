@@ -8,7 +8,13 @@ u_firm_price <- function(w_A, w_B) {
 }
 
 
-u_firm_A <- function(){
+u_firms <- function(w){
+  p_1A <- 0
+  p_2A <- 0
+  p_1B <- 0
+  p_2B <- 0
+  
+  
   
 }
 
