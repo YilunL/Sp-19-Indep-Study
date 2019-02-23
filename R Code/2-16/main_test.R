@@ -8,7 +8,7 @@ source("upstream_firms_test.R")
 source("downstream_firms_cd_test.R")
 
 
-k = 0.1 # amount captured if other firm raises price by $1 (cross-price elasticity)
+k = .1 # amount captured if other firm raises price by $1 (cross-price elasticity)
 
 integrated = 0  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
@@ -19,6 +19,7 @@ set.seed(100) #set a random seed
 a = 0.5  #set cobb-douglas production params <1
 b = 1 - a  #cobb-douglas CRS
 
+C <- (a/b)^b + (a/b)^(-a) 
 #####################################################################
 # 2. Main
 #####################################################################
@@ -63,10 +64,10 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 
 eq_int_good <-
   list(
-    w_1A = 0.3,
-    w_2A = 0.3,
-    w_1B = 0.3,
-    w_2B = 0.3,
+    w_1A = 1/(2*C*(1-k)),
+    w_2A = 1/(2*C*(1-k)),
+    w_1B = 1/(2*C*(1-k)),
+    w_2B = 1/(2*C*(1-k)),
     x_1A = x_1A,
     x_2A = x_2A,
     x_1B = x_1B,
@@ -95,4 +96,4 @@ optim(
 )
 
 # unlist(eq_int_good[1:4])
-# u_firms_unint(c(0.7, 0.7),c(0.4, 0.4))
+# u_firms_unint(c(0.7, 0.7),c(0.5, 0.5))

@@ -3,7 +3,8 @@
 #############################################################################
 
 cons_demand <- function(p, x){
-  beta = c(1, 1)
+  beta_0 = 2/3 
+  beta_1 = c(1, 1)
   alpha = c(0.5,0.5)
   
   # firm_1_p <- c(p[1], p[2])
@@ -19,7 +20,7 @@ cons_demand <- function(p, x){
   
   # return(c(prob_1, prob_2))
   
-  odds <- exp(t(x) %*% beta - t(p) %*% alpha)
+  odds <- exp(beta_0 + t(x) %*% beta_1 - t(p) %*% alpha)
   return(odds)
 }
 
