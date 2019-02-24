@@ -6,13 +6,14 @@ setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
 
 source("upstream_firms_test.R")
 source("downstream_firms_cd_test.R")
-
-
-k_downstream = 0.2 # amount captured if other firm raises price by $1 (cross-price elasticity)
+source("consumer_logit_test.R")
 
 integrated = 0  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
 cobb_douglas = 0  # downstream firm with cobb-douglas production function
+downstream_iter = 0
+
+M = 1  # market size
 
 set.seed(100) #set a random seed
 
@@ -20,12 +21,60 @@ set.seed(100) #set a random seed
 # 2. Main
 #####################################################################
 
-# upstream firm offer to downstream firm
-w_1A <- 0.6
-w_2A <- 0.5
-w_1B <- 0.6
-w_2B <- 0.5
-w_A <- c(w_1A, w_2A)
-w_B <- c(w_1B, w_2B)
+# equilibrium parameters
+x_A <- 0  # upstream firm A output
+x_B <- 0  # upstream firm B output
+q_1 <- 0  # downstream firm 1 output
+q_2 <- 0  # downstream firm 2 output
+w_A <- 0  # upstream firm A price
+w_B <- 0  # upstream firm B price
+p_1 <- 0  # downstream firm 1 price
+p_2 <- 0  # downstream firm 2 price
+eq <-
+  list(
+    w_A = w_A,
+    w_B = w_B,
+    x_A = x_A,
+    x_B = x_B
+  )
 
-p <- d_firm_price(w_A, w_B)
+# eq profits
+pi_A <- 0  #upstream A
+pi_B <- 0  #upstream B
+pi_1 <- 0  #downstream 1
+pi_2 <- 0  #downstream 2
+eq_pi <- list(
+  pi_A = pi_A,
+  pi_B = pi_B,
+  pi_1 = pi_1,
+  pi_2 = pi_2
+)
+
+# firms specific intermediate demads
+x_1A <- 0  # downstream firm 1's demand for intermediate good A
+x_2A <- 0  # downstream firm 2's demand for intermediate good A
+x_1B <- 0  # downstream firm 1's demand for intermediate good B
+x_2B <- 0  # downstream firm 2's demand for intermediate good B
+
+eq_int_good <-
+  list(
+    w_1A = .2,
+    w_2A = .5,
+    w_1B = .2,
+    w_2B = .5,
+    x_1A = x_1A,
+    x_2A = x_2A,
+    x_1B = x_1B,
+    x_2B = x_2B
+  )
+
+eq_downstream_p <-
+  list(
+    p_1A = .3,
+    p_1B = .3,
+    p_2A = 6,
+    p_2B = 6
+  )
+
+u_firm(c(eq_int_good$w_1A, eq_int_good$w_2A), c(eq_int_good$w_1B, eq_int_good$w_2B), M)
+
