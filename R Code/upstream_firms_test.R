@@ -22,7 +22,7 @@ u_firm <- function(w_A, w_B, M){
           w_B = w_B,
           M = M,
           firm_1 = optim_1,
-          method = "Nelder-Mead",
+          method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
       tol = abs(sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2) - sqrt(pi_1_old ^ 2 + pi_2_old ^
@@ -37,7 +37,7 @@ u_firm <- function(w_A, w_B, M){
           w_B = w_B,
           M = M,
           firm_1 = optim_1,
-          method = "Nelder-Mead",
+          method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
       tol = abs(sqrt(eq_pi$pi_1^2 + eq_pi$pi_2^2) - sqrt(pi_1_old^2 + pi_2_old^2))
@@ -45,16 +45,16 @@ u_firm <- function(w_A, w_B, M){
   }
   
   # offer by firm A to downstream firm 1
-  w_1A <- eq_int_good$w_1A
+  w_1A <- w_A[1]
   
   # offer by firm A to downstream firm 2
-  w_2A <- eq_int_good$w_2A
+  w_2A <- w_A[2]
   
   # offer by firm B to downstream firm 1
-  w_1B <- eq_int_good$w_1B
+  w_1B <- w_B[1]
   
   # offer by firm B to downstream firm 2
-  w_2B <- eq_int_good$w_2B
+  w_2B <- w_B[2]
   
   # downstream input demands
   x_1A <- eq_int_good$x_1A
@@ -83,6 +83,7 @@ u_firm <- function(w_A, w_B, M){
     )
   
   # upstream profits
+  
   eq_pi$pi_A <<- pi_A
   eq_pi$pi_B <<- pi_B
   
@@ -98,5 +99,11 @@ u_firm <- function(w_A, w_B, M){
       x_1B = x_1B,
       x_2B = x_2B
     )
+  
+  if(optim_A == 1){
+    return(-pi_A)
+  } else {
+    return(-pi_B)
+  }
 }
   
