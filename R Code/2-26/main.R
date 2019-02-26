@@ -1,12 +1,14 @@
 #####################################################################
-# 1. Preliminaries
+# 1. Preliminaries 
 #####################################################################
 
-setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
+setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code\\2-26")
 
-source("upstream_firms_test.R")
-source("downstream_firms_test.R")
-source("consumer_logit_test.R")
+source("upstream_firms.R")
+source("downstream_firms.R")
+source("consumer_logit.R")
+
+k = 0.91 # amount captured if other firm raises price by $1 (cross-price elasticity)
 
 integrated = 0  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
@@ -85,7 +87,7 @@ while (out_tol > 1E-9) {
   optim_A = 1 - optim_A  # optimizing which upstream firm's offer
   pi_A_old <- eq_pi$pi_A # keeping tabs on old profits
   pi_B_old <- eq_pi$pi_B
-
+  
   # optimize firm A given firm B prices are fixed
   if (optim_A == 1) {
     firm_A_optim <-
@@ -98,7 +100,7 @@ while (out_tol > 1E-9) {
         control = list(maxit = 10000, reltol = 1E-12)
       )
     out_tol = abs(sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2) - sqrt(pi_A_old ^ 2 + pi_B_old ^
-                                                             2))
+                                                                 2))
   } else {
     firm_B_optim <-
       optim(
@@ -112,8 +114,3 @@ while (out_tol > 1E-9) {
     out_tol = abs(sqrt(eq_pi$pi_A^2 + eq_pi$pi_B^2) - sqrt(pi_A_old^2 + pi_B_old^2))
   }
 }
-
-
-
-# u_firm(c(eq_int_good$w_1A, eq_int_good$w_2A), c(eq_int_good$w_1B, eq_int_good$w_2B), M)
-

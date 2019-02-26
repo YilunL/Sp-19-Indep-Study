@@ -2,7 +2,7 @@
 # 1. Preliminaries
 #####################################################################
 
-setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
+setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code\\2-26")
 
 source("upstream_firms_test.R")
 source("downstream_firms_test.R")

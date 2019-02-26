@@ -8,7 +8,7 @@ cons_demand <- function(p, x, store, brand){
   beta_2 = c(0,0)
   beta_3 = c(0,0)
   alpha = c(0.5,0.5)
-   
+  
   odds <- exp(beta_0 + t(x) %*% beta_1 - t(p) %*% alpha + store %*% beta_2 + brand %*% beta_3)
   return(odds)
 }
