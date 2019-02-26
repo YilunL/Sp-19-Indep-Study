@@ -58,10 +58,10 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 
 eq_int_good <-
   list(
-    w_1A = 1,
-    w_2A = 1,
-    w_1B = 1,
-    w_2B = 1,
+    w_1A = .5,
+    w_2A = .5,
+    w_1B = .5,
+    w_2B = .5,
     x_1A = x_1A,
     x_2A = x_2A,
     x_1B = x_1B,
@@ -70,10 +70,10 @@ eq_int_good <-
 
 eq_downstream_p <-
   list(
-    p_1A = .5,
-    p_1B = .5,
-    p_2A = .5,
-    p_2B = .5
+    p_1A = 1,
+    p_1B = 1,
+    p_2A = 1,
+    p_2B = 1
   )
 
 iter = 0
