@@ -16,8 +16,8 @@ cons_demand <- function(p, x, store, brand){
 
 
 cons_demand_2 <- function(p, store){
-  beta_0 = log(2)  # intercept
-  beta_1 = log(2)  # price effect
+  beta_0 = log(10)  # intercept
+  beta_1 = 1  # price effect
   beta_2 = 0  # store effect for store 2
   beta_3 = 0  # brand effect for item B
   

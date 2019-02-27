@@ -207,7 +207,7 @@ u_firm_int <- function(w_2A, w_B, M){
     )
   
   if(optim_A == 1){
-    return(-pi_A)
+    return(-pi_A - eq_pi$pi_1)
   } else {
     return(-pi_B)
   }
