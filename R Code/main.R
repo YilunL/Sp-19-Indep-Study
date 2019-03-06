@@ -1,5 +1,5 @@
 #####################################################################
-# 1. Preliminaries 
+# 1. Preliminaries
 #####################################################################
 
 setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
@@ -58,22 +58,22 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 
 eq_int_good <-
   list(
-    w_1A = .5,
-    w_2A = .5,
-    w_1B = .5,
-    w_2B = .5,
+    w_1A = 1,
+    w_1B = 1,
+    w_2A = 1,
+    w_2B = 1,
     x_1A = x_1A,
-    x_2A = x_2A,
     x_1B = x_1B,
+    x_2A = x_2A,
     x_2B = x_2B
   )
 
 eq_downstream_p <-
   list(
-    p_1A = 1,
-    p_1B = 1,
-    p_2A = 1,
-    p_2B = 1
+    p_1A = 3,
+    p_1B = 3,
+    p_2A = 3,
+    p_2B = 3
   )
 
 iter = 0
@@ -81,8 +81,9 @@ out_tol = 1
 optim_A = 0
 
 
-if (integrated == 0){
+if (integrated == 0) {
   while (out_tol > 1E-7) {
+    #change tol depending on market share and market size
     iter = iter + 1  # count iterations
     optim_A = 1 - optim_A  # optimizing which upstream firm's offer
     pi_A_old <- eq_pi$pi_A # keeping tabs on old profits
@@ -99,8 +100,7 @@ if (integrated == 0){
           method = "BFGS",
           control = list(maxit = 100000)
         )
-      out_tol = abs(sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2) - sqrt(pi_A_old ^ 2 + pi_B_old ^
-                                                                   2))
+      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
     } else {
       firm_B_optim <-
         optim(
@@ -111,12 +111,12 @@ if (integrated == 0){
           method = "BFGS",
           control = list(maxit = 100000)
         )
-      out_tol = abs(sqrt(eq_pi$pi_A^2 + eq_pi$pi_B^2) - sqrt(pi_A_old^2 + pi_B_old^2))
-    }
+      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
+    } 
   }
 }
 
-if (integrated == 1){
+if (integrated == 1) {
   while (out_tol > 1E-7) {
     iter = iter + 1  # count iterations
     optim_A = 1 - optim_A  # optimizing which upstream firm's offer
@@ -134,8 +134,7 @@ if (integrated == 1){
           method = "BFGS",
           control = list(maxit = 100000)
         )
-      out_tol = abs(sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2) - sqrt(pi_A_old ^ 2 + pi_B_old ^
-                                                                   2))
+      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
     } else {
       firm_B_optim <-
         optim(
@@ -146,7 +145,7 @@ if (integrated == 1){
           method = "BFGS",
           control = list(maxit = 100000)
         )
-      out_tol = abs(sqrt(eq_pi$pi_A^2 + eq_pi$pi_B^2) - sqrt(pi_A_old^2 + pi_B_old^2))
+      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
     }
   }
 }

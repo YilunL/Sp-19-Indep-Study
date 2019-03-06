@@ -5,7 +5,7 @@ u_firm_unint <- function(w_A, w_B, M){
   tol = 1           
   optim_1 = 0
   
-  while (tol > 1E-9) {
+  while (tol > 1E-7) {
     downstream_iter <<- downstream_iter + 1  # count iterations
     optim_1 = 1 - optim_1  # optimizing which intermediate firm's offer
     pi_1_old <- eq_pi$pi_1 # keeping tabs on old profits
@@ -25,8 +25,7 @@ u_firm_unint <- function(w_A, w_B, M){
           method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
-      tol = abs(sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2) - sqrt(pi_1_old ^ 2 + pi_2_old ^
-                                                               2))
+      tol = abs(1 - (eq_pi$pi_1 + eq_pi$pi_2)/(pi_1_old + pi_2_old))
     } else {
       firm_2_optim <-
         optim(
@@ -40,7 +39,7 @@ u_firm_unint <- function(w_A, w_B, M){
           method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
-      tol = abs(sqrt(eq_pi$pi_1^2 + eq_pi$pi_2^2) - sqrt(pi_1_old^2 + pi_2_old^2))
+      tol = abs(1 - (eq_pi$pi_1 + eq_pi$pi_2)/(pi_1_old + pi_2_old))
     }
   }
   
@@ -91,12 +90,12 @@ u_firm_unint <- function(w_A, w_B, M){
   eq_int_good <<-
     list(
       w_1A = w_1A,
-      w_2A = w_2A,
       w_1B = w_1B,
+      w_2A = w_2A,
       w_2B = w_2B,
       x_1A = x_1A,
-      x_2A = x_2A,
       x_1B = x_1B,
+      x_2A = x_2A,
       x_2B = x_2B
     )
   
@@ -197,12 +196,12 @@ u_firm_int <- function(w_2A, w_B, M){
   eq_int_good <<-
     list(
       w_1A = w_1A,
-      w_2A = w_2A,
       w_1B = w_1B,
+      w_2A = w_2A,
       w_2B = w_2B,
       x_1A = x_1A,
-      x_2A = x_2A,
       x_1B = x_1B,
+      x_2A = x_2A,
       x_2B = x_2B
     )
   
