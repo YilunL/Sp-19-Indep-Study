@@ -4,9 +4,9 @@
 
 setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
 
-source("upstream_firms_test.R")
-source("downstream_firms_test.R")
-source("consumer_logit_test.R")
+source("upstream_firms.R")
+source("downstream_firms.R")
+source("consumer_logit.R")
 
 integrated = 1  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
