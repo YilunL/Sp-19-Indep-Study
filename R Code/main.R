@@ -11,7 +11,7 @@ source("consumer_logit.R")
 integrated = 1  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
 cobb_douglas = 0  # downstream firm with cobb-douglas production function
-downstream_iter = 0
+
 
 M = 1  # market size
 
@@ -58,10 +58,10 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 
 eq_int_good <-
   list(
-    w_1A = 1,
-    w_1B = 1,
-    w_2A = 1,
-    w_2B = 1,
+    w_1A = .5,
+    w_1B = .5,
+    w_2A = .5,
+    w_2B = .5,
     x_1A = x_1A,
     x_1B = x_1B,
     x_2A = x_2A,
@@ -70,82 +70,120 @@ eq_int_good <-
 
 eq_downstream_p <-
   list(
-    p_1A = 3,
-    p_1B = 3,
-    p_2A = 3,
-    p_2B = 3
+    p_1A = 1,
+    p_1B = 1,
+    p_2A = 1,
+    p_2B = 1
   )
 
 iter = 0
 out_tol = 1
 optim_A = 0
-
+nruns = 3
 
 if (integrated == 0) {
-  while (out_tol > 1E-7) {
-    #change tol depending on market share and market size
-    iter = iter + 1  # count iterations
-    optim_A = 1 - optim_A  # optimizing which upstream firm's offer
-    pi_A_old <- eq_pi$pi_A # keeping tabs on old profits
-    pi_B_old <- eq_pi$pi_B
+  for (run in 1:nruns) {
     
-    # optimize firm A given firm B prices are fixed
-    if (optim_A == 1) {
-      firm_A_optim <-
-        optim(
-          par = c(eq_int_good$w_1A, eq_int_good$w_2A),
-          fn = u_firm_unint,
-          w_B = c(eq_int_good$w_1B, eq_int_good$w_2B),
-          M = M,
-          method = "BFGS",
-          control = list(maxit = 100000)
-        )
-      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
+    cat("Optimizing unintegrated upstream firms \n")
+    
+    if (run == 1) {
+      out_tol_limit = 1E-8
+    } else if (run == 2) {
+      out_tol_limit = 1E-7
     } else {
-      firm_B_optim <-
-        optim(
-          par = c(eq_int_good$w_1B, eq_int_good$w_2B),
-          fn = u_firm_unint,
-          w_A = c(eq_int_good$w_1A, eq_int_good$w_2A),
-          M = M,
-          method = "BFGS",
-          control = list(maxit = 100000)
-        )
-      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
-    } 
+      out_tol_limit = 1E-6
+    }
+    
+    
+    downstream_iter = 0
+    
+    while ((out_tol > out_tol_limit) & (downstream_iter < 75000)) {
+      iter = iter + 1  # count iterations
+      optim_A = 1 - optim_A  # optimizing which upstream firm's offer
+      pi_A_old <- eq_pi$pi_A # keeping tabs on old profits
+      pi_B_old <- eq_pi$pi_B
+      
+      # optimize firm A given firm B prices are fixed
+      if (optim_A == 1) {
+        firm_A_optim <-
+          optim(
+            par = c(eq_int_good$w_1A, eq_int_good$w_2A),
+            fn = u_firm_unint,
+            w_B = c(eq_int_good$w_1B, eq_int_good$w_2B),
+            M = M,
+            method = "BFGS",
+            control = list(maxit = 100000)
+          )
+        out_tol = abs(1 - sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2) / sqrt(pi_A_old ^
+                                                                         2 + pi_B_old ^ 2))
+      } else {
+        firm_B_optim <-
+          optim(
+            par = c(eq_int_good$w_1B, eq_int_good$w_2B),
+            fn = u_firm_unint,
+            w_A = c(eq_int_good$w_1A, eq_int_good$w_2A),
+            M = M,
+            method = "BFGS",
+            control = list(maxit = 100000)
+          )
+        out_tol = abs(1 - sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2) / sqrt(pi_A_old ^
+                                                                         2 + pi_B_old ^ 2))
+      }
+    }
   }
 }
 
 if (integrated == 1) {
-  while (out_tol > 1E-7) {
-    iter = iter + 1  # count iterations
-    optim_A = 1 - optim_A  # optimizing which upstream firm's offer
-    pi_A_old <- eq_pi$pi_A # keeping tabs on old profits
-    pi_B_old <- eq_pi$pi_B
+  for (run in 1:nruns) {
     
-    # optimize firm A given firm B prices are fixed
-    if (optim_A == 1) {
-      firm_A_optim <-
-        optim(
-          par = eq_int_good$w_2A,
-          fn = u_firm_int,
-          w_B = c(eq_int_good$w_1B, eq_int_good$w_2B),
-          M = M,
-          method = "BFGS",
-          control = list(maxit = 100000)
-        )
-      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
+    cat("Optimizing integrated upstream firms \n")
+    
+    if (run == 1) {
+      out_tol_limit = 1E-8
+    } else if (run == 2) {
+      out_tol_limit = 1E-7
     } else {
-      firm_B_optim <-
-        optim(
-          par = c(eq_int_good$w_1B, eq_int_good$w_2B),
-          fn = u_firm_int,
-          w_2A = eq_int_good$w_2A,
-          M = M,
-          method = "BFGS",
-          control = list(maxit = 100000)
-        )
-      out_tol = abs(1 - (eq_pi$pi_A + eq_pi$pi_B) / (pi_A_old + pi_B_old))
+      out_tol_limit = 1E-6
+    }
+    
+    downstream_iter = 0
+    
+    while ((out_tol > out_tol_limit) & (downstream_iter < 75000)) {
+      iter = iter + 1  # count iterations
+      optim_A = 1 - optim_A  # optimizing which upstream firm's offer
+      pi_A_old <- eq_pi$pi_A # keeping tabs on old profits
+      pi_B_old <- eq_pi$pi_B
+      
+      # optimize firm A given firm B prices are fixed
+      if (optim_A == 1) {
+        firm_A_optim <-
+          optim(
+            par = eq_int_good$w_2A,
+            fn = u_firm_int,
+            w_B = c(eq_int_good$w_1B, eq_int_good$w_2B),
+            M = M,
+            method = "BFGS",
+            control = list(maxit = 100000)
+          )
+        out_tol = abs(1 - sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2) / sqrt(pi_A_old ^
+                                                                         2 + pi_B_old ^ 2))
+      } else {
+        firm_B_optim <-
+          optim(
+            par = c(eq_int_good$w_1B, eq_int_good$w_2B),
+            fn = u_firm_int,
+            w_2A = eq_int_good$w_2A,
+            M = M,
+            method = "BFGS",
+            control = list(maxit = 100000)
+          )
+        out_tol = abs(1 - sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2) / sqrt(pi_A_old ^
+                                                                         2 + pi_B_old ^ 2))
+      }
     }
   }
+}
+
+if (downstream_iter >= 75000) {
+  cat("Warning: Upstream firms did not converge within relative tolerance. Check FOCs to ensure that you have indeed found an equilibrium")
 }

@@ -1,11 +1,11 @@
 #############################################################################
 # Upstream firms take it or leave it offers
 #############################################################################
-u_firm_unint <- function(w_A, w_B, M){
-  tol = 1           
+u_firm_unint <- function(w_A, w_B, M) {
+  tol = 1
   optim_1 = 0
   
-  while (tol > 1E-7) {
+  while (tol > 1E-8) {
     downstream_iter <<- downstream_iter + 1  # count iterations
     optim_1 = 1 - optim_1  # optimizing which intermediate firm's offer
     pi_1_old <- eq_pi$pi_1 # keeping tabs on old profits
@@ -25,7 +25,7 @@ u_firm_unint <- function(w_A, w_B, M){
           method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
-      tol = abs(1 - (eq_pi$pi_1 + eq_pi$pi_2)/(pi_1_old + pi_2_old))
+      tol = abs(1 - sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2) / sqrt(pi_1_old ^ 2 + pi_2_old ^ 2))
     } else {
       firm_2_optim <-
         optim(
@@ -39,7 +39,7 @@ u_firm_unint <- function(w_A, w_B, M){
           method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
-      tol = abs(1 - (eq_pi$pi_1 + eq_pi$pi_2)/(pi_1_old + pi_2_old))
+      tol = abs(1 - sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2) / sqrt(pi_1_old ^ 2 + pi_2_old ^ 2))
     }
   }
   
@@ -99,18 +99,18 @@ u_firm_unint <- function(w_A, w_B, M){
       x_2B = x_2B
     )
   
-  if(optim_A == 1){
+  if (optim_A == 1) {
     return(-pi_A)
   } else {
     return(-pi_B)
   }
 }
 
-u_firm_int <- function(w_2A, w_B, M){
-  tol = 1           
+u_firm_int <- function(w_2A, w_B, M) {
+  tol = 1
   optim_1 = 0
   
-  while (tol > 1E-9) {
+  while (tol > 1E-8) {
     downstream_iter <<- downstream_iter + 1  # count iterations
     optim_1 = 1 - optim_1  # optimizing which intermediate firm's offer
     pi_1_old <- eq_pi$pi_1 # keeping tabs on old profits
@@ -126,12 +126,11 @@ u_firm_int <- function(w_2A, w_B, M){
           w_A = c(0, w_2A),
           w_B = w_B,
           M = M,
-          firm_1 = optim_1,
+          firm_1 = optim_1,  # takes on the value 1 here becuase we are optimizing firm 1
           method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
-      tol = abs(sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2) - sqrt(pi_1_old ^ 2 + pi_2_old ^
-                                                               2))
+      tol = abs(1 - sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2) / sqrt(pi_1_old ^ 2 + pi_2_old ^ 2))
     } else {
       firm_2_optim <-
         optim(
@@ -141,11 +140,11 @@ u_firm_int <- function(w_2A, w_B, M){
           w_A = c(0, w_2A),
           w_B = w_B,
           M = M,
-          firm_1 = optim_1,
+          firm_1 = optim_1,  # takes on the value 0 here becuase we are optimizing firm 2
           method = "BFGS",
           control = list(maxit = 10000, reltol = 1E-12)
         )
-      tol = abs(sqrt(eq_pi$pi_1^2 + eq_pi$pi_2^2) - sqrt(pi_1_old^2 + pi_2_old^2))
+      tol = abs(1 - sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2) / sqrt(pi_1_old ^ 2 + pi_2_old ^ 2))
     }
   }
   
@@ -205,10 +204,9 @@ u_firm_int <- function(w_2A, w_B, M){
       x_2B = x_2B
     )
   
-  if(optim_A == 1){
+  if (optim_A == 1) {
     return(-pi_A - eq_pi$pi_1)
   } else {
     return(-pi_B)
   }
 }
-
