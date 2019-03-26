@@ -8,7 +8,7 @@ source("upstream_firms.R")
 source("downstream_firms.R")
 source("consumer_logit.R")
 
-integrated = 1  # is Firm A and Firm 1 vertically integrated
+integrated = 0  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
 cobb_douglas = 0  # downstream firm with cobb-douglas production function
 down_mc_1 <- 0  # downstream marginal cost for firm 1
@@ -95,9 +95,9 @@ if (integrated == 0) {
     if (run == 1) {
       out_tol_limit = 1E-10
     } else if (run == 2) {
-      out_tol_limit = 1E-9
-    } else {
       out_tol_limit = 1E-8
+    } else {
+      out_tol_limit = 1E-6
     }
     
     downstream_iter = 0
@@ -150,9 +150,9 @@ if (integrated == 1) {
     if (run == 1) {
       out_tol_limit = 1E-10
     } else if (run == 2) {
-      out_tol_limit = 1E-9
-    } else {
       out_tol_limit = 1E-8
+    } else {
+      out_tol_limit = 1E-6
     }
     
     downstream_iter = 0

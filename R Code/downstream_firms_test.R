@@ -1,5 +1,6 @@
 # Linear production
-
+setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
+source("consumer_logit_test.R")
 
 #############################################################################
 # Unintegrated downstream firms
@@ -13,94 +14,36 @@ d_firm_prob <- function(p_1, p_2){
   return(odds)
 }
 
-d_firm_1 <- function(w, p, odds, M) {
-  w_A <- w[1]  # input prices offered by upstream firms
-  w_B <- w[2]
-  p_A <- p[1]  # prices to offer
-  p_B <- p[2]
-  
-  odds_1A <- odds[1]
-  odds_1B <- odds[2]
-  
-  share_1A <- odds_1A / (1 + sum(odds))  # compute market share of good A
-  share_1B <- odds_1B / (1 + sum(odds))  # compute market share of good B
-  x_1A <- share_1A * M  # compute quantity demanded given market size  
-  x_1B <- share_1B * M  # compute quantity demanded given market size
-  
-  pi <- x_1A * (p_A - w_A) + x_1B * (p_B - w_B)  # assume consumers buy one of each good
-  
-  return(c(x_1A, x_1B, pi))
-}
+epsilon <- 1E-11
 
-# exact same copy of function for firm 1, except with variables for firm 2
-d_firm_2 <- function(w, p, odds, M) {
-  w_A <- w[1]  # input prices offered by upstream firms
-  w_B <- w[2]
-  p_A <- p[1]  # prices to offer
-  p_B <- p[2]
-  
-  odds_2A <- odds[3]
-  odds_2B <- odds[4]
-  
-  share_2A <- odds_2A / (1 + sum(odds))  # compute market share of good A
-  share_2B <- odds_2B / (1 + sum(odds))  # compute market share of good B
-  x_2A <- share_2A * M  # compute quantity demanded given market size
-  x_2B <- share_2B * M  # compute quantity demanded given market size
-  
-  pi <- x_2A * (p_A - w_A) + x_2B * (p_B - w_B)  # assume consumers buy one of each good
-  
-  return(c(x_2A, x_2B, pi))
-}
+w_1A <- 0.5
+w_1B <- 0.5
+w_2A <- 0.5
+w_2B <- 0.5
 
-d_firm_main <- function(p_1, p_2, w_A, w_B, M, firm_1){
-  # offer by firm A to downstream firm 1
-  w_1A <- w_A[1]
-  
-  # offer by firm A to downstream firm 2
-  w_2A <- w_A[2]
-  
-  # offer by firm B to downstream firm 1
-  w_1B <- w_B[1]
-  
-  # offer by firm B to downstream firm 2
-  w_2B <- w_B[2]
-  
-  # given a guess for prices, calculate exp(vj) for the two firms
-  odds <- d_firm_prob(p_1,p_2)
-  
-  
-  downstream1 <- d_firm_1(c(w_1A, w_1B), p_1, odds, M)
-  downstream2 <- d_firm_2(c(w_2A, w_2B), p_2, odds, M)
-  
-  # quantity demanded of intermediate goods
-  eq_int_good$x_1A <<- downstream1[1]
-  eq_int_good$x_1B <<- downstream1[2]
-  
-  eq_int_good$x_2A <<- downstream2[1]
-  eq_int_good$x_2B <<- downstream2[2]
-  
-  
-  # price by firm 1 for good A
-  eq_downstream_p$p_1A <<- p_1[1]
-  
-  # price by firm 1 for good B
-  eq_downstream_p$p_1B <<- p_1[2]
-  
-  # price by firm 1 for good A
-  eq_downstream_p$p_2A <<- p_2[1]
-  
-  # price by firm 1 for good A
-  eq_downstream_p$p_2B <<- p_2[2]
-  
-  # profits
-  eq_pi$pi_1 <<- downstream1[3]
-  eq_pi$pi_2 <<- downstream2[3]
-  
-  if(firm_1 == 1){
-    return(-downstream1[3])
-  } else {
-    return(-downstream2[3])
-  }
-}
+w_A <- c(w_1A, w_2A)
+w_B <- c(w_1B, w_2B)
 
+p_1A <- 1
+p_1B <- 1
+p_2A <- 1
+p_2B <- 1
 
+p_1 = c(p_1A,p_1B)
+p_2 = c(p_2A,p_2B)
+
+odds <- d_firm_prob(p_1, p_2) #1A, 1B, 2A, 2B
+
+q_1A <- odds[1]/(1 + sum(odds))
+q_1B <- odds[2]/(1 + sum(odds))
+q_2A <- odds[3]/(1 + sum(odds))
+q_2B <- odds[4]/(1 + sum(odds))
+
+p_1_n <- c(p_1A + epsilon, p_1B)
+
+new_odds <- d_firm_prob(p_1_n, p_2)
+q_1A_n <- new_odds[1]/(1 + sum(new_odds))
+q_1B_n <- new_odds[2]/(1 + sum(new_odds))
+q_2A_n <- new_odds[3]/(1 + sum(new_odds))
+q_2B_n <- new_odds[4]/(1 + sum(new_odds))
+dq_1A_dp_1A <- (q_1A_n - q_1A) / epsilon 

@@ -135,9 +135,6 @@ price_err <- (
 
 price_err
 
-compare_prices <- cbind(as.matrix(c(p_1A_est, p_1B_est, p_2A_est, p_2B_est)), matrix(unlist(eq_downstream_p)))
-
 p_1A_int_est = (
-  -eq_int_good$w_2A * dq_2A_dp_1A - eq_int_good$x_1A - (eq_downstream_p$p_1B - eq_int_good$w_1B) * dq_1B_dp_1A
-  )/dq_1A_dp_1A
+  -eq_int_good$w_2A * dq_2A_dp_1A - eq_int_good$x_1A)/dq_1A_dp_1A
 
