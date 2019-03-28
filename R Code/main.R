@@ -8,7 +8,7 @@ source("upstream_firms.R")
 source("downstream_firms.R")
 source("consumer_logit.R")
 
-integrated = 1  # is Firm A and Firm 1 vertically integrated
+integrated = 0  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
 cobb_douglas = 0  # downstream firm with cobb-douglas production function
 down_mc_1 <- 0  # downstream marginal cost for firm 1
@@ -64,7 +64,7 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 
 eq_int_good <-
   list(
-    w_1A = .5, # initial guess for intermediate good costs
+    w_1A = .5,  # initial guess for intermediate good costs
     w_1B = .5,
     w_2A = .5,
     w_2B = .5,
@@ -75,11 +75,11 @@ eq_int_good <-
   )
 
 eq_downstream_p <-
-  list( 
-    p_1A = 3,  # initial guess for downstream prices
-    p_1B = 3,
-    p_2A = 3,
-    p_2B = 3
+  list(
+    p_1A = 2,  # initial guess for downstream prices
+    p_1B = 2,
+    p_2A = 2,
+    p_2B = 2
   )
 
 iter = 0
