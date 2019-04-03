@@ -8,7 +8,7 @@ source("upstream_firms.R")
 source("downstream_firms.R")
 source("consumer_logit.R")
 
-integrated = 0  # is Firm A and Firm 1 vertically integrated
+integrated = 1  # is Firm A and Firm 1 vertically integrated
 linear = 0  # downstream firm with linear production function
 cobb_douglas = 0  # downstream firm with cobb-douglas production function
 down_mc_1 <- 0  # downstream marginal cost for firm 1

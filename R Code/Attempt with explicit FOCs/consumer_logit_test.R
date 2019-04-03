@@ -14,10 +14,10 @@
 # }
 
 cons_demand_2 <- function(p, store){
-  beta_0 = 10 # intercept
+  beta_0 = 1 # intercept
   beta_1 = 1  # price effect
-  beta_2 = 0  # store effect for store 2
-  beta_3 = 0  # brand effect for item B
+  beta_2 = 0 # store effect for store 2
+  beta_3 = 0 # brand effect for item B
   
   p_A <- p[1]
   p_B <- p[2]
