@@ -78,7 +78,7 @@ d_main <- function(w){
     fn = objective,
     w = w,
     method = "BFGS",
-    control = list(maxit = 10000, abstol = 1E-10)
+    control = list(maxit = 10000)
     )
   
   out_q <- quantities(res$par[1:2], res$par[3:4])

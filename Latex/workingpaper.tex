@@ -1,0 +1,291 @@
+\documentclass[12pt]{article}%
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[nohead]{geometry}
+\usepackage[singlespacing]{setspace}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{endnotes}
+\usepackage{graphicx}%
+\usepackage{rotating}
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=1in,right=1in,top=1.00in,bottom=1.0in}
+\begin{document}
+
+\title{Title of the paper}
+\author{First Last Name\thanks{Address: 484 XXX Hall, 1206 South XXX St.,
+Champaign, IL 61820, USA, telephone:\ 1-217-XXX-XXXX, e-mail:
+\textit{xxxxx@xxxxx.edu}. The author is grateful to XXXX for advice
+and suggestions, and to XXX, XXX, XXX, and seminar participants at the XXXXXXXX for helpful comments.}\medskip\\{\normalsize Department of Economics, University of Xxxxxxxxxx (XXXX)}}
+\maketitle
+
+\sloppy%avoids the breakage of words at the end of lines, by adjusting spaces between words inside the lines
+
+\onehalfspacing
+
+\begin{abstract}
+Your abstract goes here.
+.
+\end{abstract}
+
+\strut
+
+\textbf{Keywords:} Urban growth control; Land use
+regulation; Development; Regional Inequality; Labor supply.
+
+\strut
+
+\textbf{JEL Classification Numbers:} R14, H0, XY.
+
+\pagebreak%breaks to the next page
+\doublespacing %makes space between lines to be double, use singlespacing for space 1
+
+
+\section{Introduction}
+\label{intro} %for citation purposes later in the text
+
+This paper.\footnote{Availotis et. al \cite{ASS2001} uses a ...}
+Theoretically, a city ... 
+
+The issue of ... 
+
+This paper is organized as follows. The next section presents ... Then, Section \ref{data} discusses the ... Section \ref{results} analyzes the ... Concluding remarks are offered in Section \ref{conclusion}.
+
+\section{The model}
+\label{model}
+
+This section presents a .
+
+\subsection{Setup}
+
+Consider a closed economy with regions indexed by $i=0,1$. There is a linear city in each region, with width one and length $\bar{x}_{i}$. The distance between the CBDs of the two cities is $\Gamma$. Urban land is occupied by mobile renters, who demand one unit of land each. Thus, $\bar{x}_{i}$ equals the city population $P_{i}$, and $\bar{x}_{0}+\bar{x}_{1}=P_{0}+P_{1}=P$, where $P$ is the total population of renters in this economy. 
+
+Each renter pays a land rent $r_{i}(x_{i})$, which is a decreasing function of $x_{i}$ because individuals are willing to bid more to live closer to their work place in order to avoid commuting costs. Utilities are
+given by the consumption of the non-land good, with the indirect utility
+function of a renter who lives in $i$ and works in $j$ being
+\begin{equation}
+u_{i,j}(x_{i})=\left\{
+\begin{array}
+[c]{ll}%
+w_{i}-tx_{i}-r_{i}(x_{i})\text{ } & \text{if }j=i\\
+w_{j}-t\Gamma-tx_{i}-r_{i}(x_{i})\text{ } & \text{otherwise.}%
+\end{array}
+\right.  \label{utility}%
+\end{equation}
+
+
+
+
+
+\subsection{Controls in city $0$}
+
+Land rent at the boundary of each city must equal the opportunity cost of land
+outside the city, which is zero: $r_{i}(\bar{x}_{i})=0$. Rents at other places are determined by utility equalization: $u_{i,i}(x_{i})=u_{i,i}(\bar{x}_{i})$ for all $x_{i}$. Consequently, 
+\begin{equation}
+r_{i}(x_{i})=t\left(  \bar{x}_{i}-x_{i}\right)  \text{.} \label{rent in xi}%
+\end{equation}
+
+Now, suppose that growth controls are introduced ($\bar{x}_{0}$ is restricted to under $\frac{1}{2}P$), increasing total land rents. There is no control in city $1$, therefore \eqref{rent in xi} is still valid there. For city $0$, however, the land rent function has changed. Recall that residents must be equally well-off in the two cities and suppose for the moment that IC does not occur, meaning that the first of the expressions in \eqref{utility} is relevant. Noting that $u_{1,1}(\bar{x}_{1})=w_{1}-t\bar{x}_{1}$, set this expression equal to $u_{0,0}(x_{0})=w_{0}-tx_{0}-r_{0}(x_{0})$, yielding
+\begin{align}
+r_{0}(x_{0})  &  =t\left(  \bar{x}_{1}-x_{0}\right)  +w_{0}-w_{1} =t\left(  P-\bar{x}_{0}-x_{0}\right)  +F^{\prime}(N_{0})-F^{\prime}%
+(P-N_{0})\text{,} \label{rent in x0 under control}%
+\end{align}
+where the second equality uses $\bar{x}_{1}=P-\bar{x}_{0}$ and ...
+Figure \ref{yourkey} illustrates the effects of controls on land rents in each city.
+
+
+\begin{figure}[h]
+   \caption{Effects of controls on rents}
+   \centering  
+     \includegraphics[width=0.75 \textwidth]{filename.pdf} \\
+
+\footnotesize
+
+\textit{Note: A is the border rent loss, B is the supply restriction gain, and C is wage increase gain.}
+   \label{yourkey} 
+\end{figure}
+
+\normalsize
+
+
+
+\subsection{Equilibrium characterization}
+
+This relationship could create a problem for the empirical estimation, since tighter controls would not be generating IC. Fortunately, all cities in the sample have neighbors close enough that allow some IC to occur.
+
+
+
+
+
+
+\section{The empirical model}
+\label{empirical}
+
+
+In the empirical estimation, $y_{i}$ is the percentage of workers residing in city $i$ who commute to work in other cities. It is expected that this proportion will be larger if the surrounding cities have adopted a large number of control measures.\footnote{Cervero (1989) notes that some jobs-housing mismatch is expected.}
+
+
+
+
+
+
+
+\section{Data}
+\label{data}
+
+Table \ref{table1} presents descriptive statistics of those variables: the number of observations, the mean, the standard deviation, and the minimum and the maximum values. 
+
+
+\begin{table}[htb] \centering
+\label{table1}
+   \caption{Descriptive Statistics}
+      
+\footnotesize %reduces font size inside the table
+
+% Table generated by Excel2LaTeX from sheet 'stat2'
+\begin{tabular}{l|rrrrr} %l is for left alignment of the text in the column, r is for right, c is for center, the | creates a vertical line between the columns
+\hline %produces a horizontal line
+  Variable &        Obs &       Mean &  Std. Dev. &        Minimum &        Maximum \\
+\hline
+
+   wkoutpc &        219 &      68.72 &      18.11 &      18.9 &      92.7 \\
+
+     black &        219 &       5.58 &       7.98 &       0.1 &      54.9 \\
+
+  hispanic &        219 &      24.26 &      18.67 &       3.0 &      93.1 \\
+
+     asian &        219 &       9.76 &       8.87 &       0.8 &      57.5 \\
+
+    age-17 &        219 &      26.01 &       5.72 &       7.1 &      40.2 \\
+
+  age18-24 &        219 &      11.41 &       3.90 &       5.3 &      33.5 \\
+
+  age35-44 &        219 &      15.70 &       2.40 &       7.8 &      22.8 \\
+
+  age45-64 &        219 &      17.21 &       3.68 &       9.2 &      32.7 \\
+
+    age65- &        219 &      10.50 &       4.92 &       3.8 &      42.1 \\
+
+    female &        219 &      44.35 &       2.47 &      36.4 &      54.6 \\
+
+        ba &        219 &      23.67 &      12.92 &       1.6 &      65.2 \\
+
+   married &        219 &      52.81 &       8.14 &      25.0 &      71.8 \\
+
+ homeowner &        219 &      57.29 &      13.26 &      22.3 &      90.9 \\
+
+      area &        219 &      23.51 &      41.95 &       1.2 &     469.3 \\
+
+ unemploym &        219 &       6.22 &       2.70 &       2.3 &      17.0 \\
+
+  n-govnmt &        203 &      69.38 &      41.88 &       5 &     358 \\
+
+      jobs &        158 &      35.24 &      91.79 &       2.5 &    1057.2 \\
+ 
+\hline
+\multicolumn {6}{p{4in}} {\textit{$^{a}$\textbf{jobs-ngb} is calculated using the 158 observations for \textbf{jobs}}} \\
+\multicolumn {6}{p{4in}} {\textit{$^{b}$\textbf{wd-ugc} and \textbf{w1-ugc} are calculated using the 144 observations for \textbf{ugc}}}\\
+
+
+
+\end{tabular}  
+ 
+
+\end{table}
+
+\normalsize %brings font size back to normal
+
+
+
+
+
+\section{Estimation results}
+\label{results}
+
+The results for the estimation of the model ... 
+
+
+
+\section{Concluding remarks}
+\label{conclusion}
+
+This paper examines the relationship between IC by workers and the adoption of growth-control by jurisdictions. 
+
+
+
+
+
+
+
+
+\singlespacing
+
+\section*{Acknowledgement} 
+
+I thank you for reading this.
+
+\appendix
+\section*{Appendix}
+
+\subsection*{List of cities included in the sample}
+
+blah-blah-blah...
+
+\footnotesize
+\begin{quotation}
+\noindent Alameda city*, Alhambra city, Anaheim city, Antioch city, Apple Valley town*, Arcadia city, Azusa city, Bakersfield city, Baldwin Park city, Bell city, Bell Gardens city, Bellflower city*, Berkeley city*, Beverly Hills city*, Brea city, Buena Park city, Burbank city, Burlingame city, Camarillo city, Campbell city, Carlsbad city, Carson city*, Cathedral City city*, Ceres city*, Cerritos city*, Chico city, Chino city, Chula Vista city, Claremont city*, Clovis city*, Colton city, Compton city*, Concord city, Corona city, Coronado city*, Costa Mesa city, Covina city, Culver City city, ... \\ \textit{* indicates that data was available for...}
+\end{quotation}
+
+
+\normalsize
+
+
+
+
+
+
+\begin{thebibliography}{9} 
+                                                                                               %
+\bibitem {ASS2001}J. Aivalotis, D. Spaulding, G. Stockmayer, The bay area
+jobs-housing mismatch, Applied Demography - University of California at
+Berkeley working paper (2001).
+
+\bibitem {BL1996}J.K. Brueckner, F-C. Lai, Urban growth controls with resident
+landowners, Regional Science and Urban Economics 26 (1996) 125-144.
+
+\bibitem {B1999}J.K. Brueckner, Modeling urban growth controls, in: A.
+Panagariya, P. Portney, R.M. Schwab (Eds.), Environmental and Public
+Economics: Essays in Honor of Wallace E. Oates, Edward Elgar Publishers, 1999, pp. 151-168.
+
+\end{thebibliography}
+
+
+
+\end{document}

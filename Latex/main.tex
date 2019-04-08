@@ -1,0 +1,629 @@
+\documentclass[12pt]{article}%
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[nohead]{geometry}
+\usepackage[singlespacing]{setspace}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{endnotes}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{graphicx}%
+\usepackage{rotating}
+\interfootnotelinepenalty=10000
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=1in,right=1in,top=1.00in,bottom=1.0in}
+\begin{document}
+
+\title{Horizontal Integration Effects in Vertical Mergers}
+\author{Yilun Li\thanks{Undergraduate student in Economics. E-mail:
+\textit{yilunli@sas.upenn.edu}. I am grateful to my independent study advisor, Aviv Nevo, for his advice
+and suggestions.}\medskip\\{\normalsize Undergraduate Independent Study (ECON 199)}}
+\maketitle
+
+\sloppy%avoids the breakage of words at the end of lines, by adjusting spaces between words inside the lines
+
+\onehalfspacing
+
+\begin{abstract}
+BlahBlah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+\end{abstract}
+
+\strut
+
+\textbf{Keywords:} Vertical Merger; Vertical Integration; Horizontal Merger; Merger Simulation.
+
+\strut
+
+% \textbf{JEL Classification Numbers:} R14, H0, XY.
+
+\pagebreak%breaks to the next page
+\doublespacing %makes space between lines to be double, use singlespacing for space 1
+
+
+\section{Introduction}
+\label{intro} %for citation purposes later in the text
+
+This paper.\footnote{This is a footnote}
+
+This paper is organized as follows. The next section presents the model. Then, Section \ref{simulation} discusses the ... Concluding remarks are offered in Section \ref{conclusion}.
+
+\section{The model}
+\label{model}
+
+There two upstream firms or suppliers, $U_A$ and $U_B$, and two downstream firms or retailers, $D_1$ and $D_2$. The downstream firms sell two differentiated products, each product using an one input from one of the upstream suppliers. Each individual consumer $i$ achieves utility $u_{ij}(p_{jk})$ from a product sold by firm $j$ and supplied by firm $k$:
+%%%%%%%%%%%%%%%%%%5 Cons Utility %%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation} \label{cons_util}
+    u_{ijk} = \beta_0 - \beta_1 p_{jk} + \beta_2 \delta_2 + \beta_3\delta_B + \epsilon_{ijk} \qquad j \in {1,2} \quad k \in {A, B}
+\end{equation}
+where $\delta_2$ is a dummy variable indicating the effect of a preference for downstream retailer $2$'s products, and $\delta_B$ is a dummy variable indicating the effect of a preference for upstream supplier $B$'s goods. For example, $u_{i1A}$ is the utility obtained by consumer $i$ from the good supplied by $U_A$ and sold by $D_1$. Using this utility function, we construct a demand function determined by the standard logit demand model: 
+
+%%%%%%%%%%%%%%%%%% Demand %%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation} \label{demand_eq}
+    q_{jk} = \frac{exp(v(p_{jk}))}{1 + \sum_{all j,k} exp(v(p_{jk}))} \cdot M
+\end{equation}
+where $v(p_{jk})$ is $\beta_0 - \beta_1 p_{jk} + \beta_2 \delta_2 + \beta_3\delta_B$ from (\ref{cons_util}). We assume that the market size is $M = 1$, so the shares of each good can be interpreted as the quantity sold. 
+
+$D_1$ and $D_2$ engage downstream in price competition, with each firm having the profit function:
+%%%%%%%%%%%%%%%%%%5 Downstream profit %%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+    \pi_j = (p_{jA} - w_{jA})q_{jA} + (p_{jB} - w_{jB})q_{jB} \qquad j = 1,2     
+\end{equation}
+
+The downstream firms simultaneously solve their first-order conditions:
+%%%%%%%%%%%%%%%%%%%%%%% Downstream FOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+    \frac{\partial \pi_j}{\partial p_{jk}} = q_{jk} + (p_{jk} - w_{jk})\frac{\partial q_{jk}}{\partial p_{jk}} + (p_{j, -k} - w_{j, -k})\frac{\partial q_{j, -k}}{\partial p_{jk}} = 0 \quad j = 1,2; \quad k = A,B
+\end{equation}
+
+The two upstream firms $U_A$ and $U_B$ produce differentiated intermediate goods at constant marginal cost $c_k \, (k = A, B)$, and sell them to both downstream firms at a wholesale price $w_{jk} > c_k$, $(j = 1,2)$, allowing for price discrimination of the downstream firms. The intermediate good is transformed into the final good by the downstream firms on a one-for-one basis at zero marginal cost.
+
+It is assumed that the upstream marginal costs, $c_k$, are zero so that the wholesale price can be interpreted as the contribution margin per unit sold. Therefore, each upstream firm has the revenue/profit function:
+
+%%%%%%%%%%%%%%%%%%5 Profit Function for Upstream firms %%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+    \pi_j = w_{1k}q_{1k} + w_{2k}q_{2k} \qquad k = A,B
+\end{equation}
+where $q_{jk}, \, (j = 1,2; k = A,B)$ is the quantity obtained from (\ref{demand_eq}) for the good supplied by $U_k$ and sold by $D_j$. Therefore, each $q_{jk}$ is actually $q_{jk}(\vec{p})$, a function of the vector of downstream prices. Since downstream prices are also a function of the intermediate input prices, the first-order-conditions for the upstream firm with respect to the intermediate input price must be implicitly differentiated or solved numerically. We simply note that the equilibrium intermediate input prices are determined by simultaneously solving the four first-order conditions: $\partial \pi_k/\partial w_{jk}$. 
+
+
+
+\subsection{Timing}
+
+The timing of the model operates as follows:
+
+\begin{itemize}
+    \item \textit{Stage 1:} Upstream and downstream firms learn of each other's marginal costs and the downstream industry demand curve. 
+    \item \textit{Stage 2:} Upstream firm $U_A$ and downstream firm $D_1$ decide whether or not to integrate.
+    \item \textit{Stage 3:} Upstream firms simultaneously offer take-it-or-leave-it input prices, $w_{jk}$ to the downstream firms. 
+    \item \textit{Stage 4:} The downstream firms then optimize their retail prices given these input prices and the demand curve. The downstream firms simultaneously order the quantity demanded from the upstream firm at their optimal prices. 
+\end{itemize}
+
+\subsection{Integration}
+
+After learning about everyone's marginal costs and before any offers are made by $U_A$ and $U_B$ to $D_1$ and $D_2$, $U_A$ has the opportunity to integrate with $D_1$. We make the following assumptions about the consequences of vertical integration.
+
+\noindent\textbf{Assumption 1:} \textit{There are no lump-sum costs to integration}
+
+Classic papers in the vertical foreclosure literature like \cite{hart1990vertical} assume that there is either some lump-sum cost due to a loss in efficiency after integration. We do allow for residual marginal costs after integration like additional selling or other bureaucracy costs that impact the margin. 
+
+\noindent\textbf{Assumption 2:} \textit{Integrated firms share profits}
+
+This assumption makes sure that the integrated firm $U_A-D_1$ maximizes its joint profit function, which is: 
+
+% Integrated firm joing profit function
+\begin{equation} \label{integrated profit}
+    \pi_{U_A-D_1} = w_{2A}x_{2A} + p_{1A}x_{1A} + p_{1B}x_{1B}
+\end{equation}
+This profit functions assumes that the intermediate good price, $w_{1A}$, is equal to zero as a result of the integration of the two firms. Therefore, the terms of (\ref{integrated profit}) can be thought about in the following manner - the first term is the profit from the upstream division selling to the remaining downstream firm, $D_2$, and the other two terms are the profit from the customer facing downstream division. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                     Simulation                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Methodology and Simulation Results}
+\label{simulation}
+
+\subsection{Methodology}
+Equilibrium outcomes were simulated using a nested two-stage optimization routine. The inside (nested) routine optimizes downstream profits given intermediate good offers from the upstream firms. $D_1$ first optimizes and then $D_2$ responds to $D_1$'s chosen prices. $D_1$ then optimizes with respect to the newly chosen prices from $D_2$, and then $D_2$ responds accordingly. This inside optimization routine stops when the profits of the downstream firms reach a relative tolerance limit or a certain number of iterations.
+
+The outside routine optimizes the upstream firm profits, similar to the above method of the nested inside routine. $U_A$ first offers prices to the downstream firms, which optimize their downstream prices accordingly. $U_B$ then optimizes its offer given $U_A$'s offer. This optimization routine stops when the profits of the upstream firms reach a relative tolerance limit or a certain number of iterations. When integrated, $U_A-D_1$ tries to maximize $\pi_A + \pi_1$ given in (\ref{integrated profit}).
+
+\subsection{No Brand or Store Effects}
+Consider the following scenario: two clothing retailers sell two kinds of generic t-shirts. Consumers do not have a preference on either retailer or t-shirt. If one retailer and one t-shirt manufacturer merge, we would expect to see that the merged firm sells its t-shirts at a lower price and the other t-shirt at a higher price to promote its own shirts. The remaining retailer has a hiked price on the t-shirts bought from the merged firm, because it is more profitable for the merged firm to have its t-shirts sold in house. The retailer will cut prices on the other t-shirt in an attempt to incentivize some customers to stay.
+
+Table \ref{tab:normal} presents the simulated equilibrium of the above scenario - when there are no store or brand effects. In the consumer utility function (\ref{cons_util}), we set $\beta_2 = \beta_3 = 0$. We fix a price coefficient\footnote{The $\beta_1$ price parameter does not affect the shares of any of the firms in the model. A higher $\beta_1$ means lower prices for consumers across the board, but markups and profits relative to price remain the same. This is demonstrated in Table \ref{} in the Appendix.} $\beta_1$ and vary the intercept term $\beta_0$ to allow for changes in market share. 
+
+Market share appears to not have any effect on the integration outcome. Across the board, we see that after $U_A-D_1$ integrate, $p_{1A}$ falls due to the elimination of double marginalization (EDM). Prices $p_{1B}$ and $p_{2A}$ both increase. $p_{1B}$ increases because the downstream firm needs to recover some of the profit lost as a result of people substituting to good $1A$. $p_{2A}$ increases even more because of a raising rivals' cost effect (RRC) due to an increase in $w_{2A}$. $p_{2B}$ decreases, likely as a response by store B to retain some customers who are substituting away from good $1B$. 
+
+% Table 1
+\begin{table}[h]
+  \centering
+  \setlength{\tabcolsep}{2pt}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}     0     & -1    & 1     & 0     & 0     & 2.19  & 2.19  & 2.19  & \multicolumn{1}{c}{2.19} & 1.11  & 1.11  & 1.11  & \multicolumn{1}{c}{1.11} &       &       &       &  \\
+    1     & -1    & 1     & 0     & 0     & 1.14  & 2.24  & 2.28  & \multicolumn{1}{c}{2.17} & 0     & 1.10  & 1.21  & \multicolumn{1}{c}{1.10} &       &       &       &  \\
+    0     & log(4) & 1     & 0     & 0     & 2.76  & 2.76  & 2.76  & \multicolumn{1}{c}{2.76} & 1.42  & 1.42  & 1.42  & \multicolumn{1}{c}{1.42} &       &       &       &  \\
+    1     & log(4) & 1     & 0     & 0     & 1.66  & 2.92  & 3.06  & \multicolumn{1}{c}{2.62} & 0     & 1.26  & 1.81  & \multicolumn{1}{c}{1.38} &       &       &       &  \\
+    0     & log(100) & 1     & 0     & 0     & 3.69  & 3.69  & 3.69  & \multicolumn{1}{c}{3.69} & 1.85  & 1.85  & 1.85  & \multicolumn{1}{c}{1.85} &       &       &       &  \\
+    1     & log(100) & 1     & 0     & 0     & 2.66  & 4.04  & 4.38  & \multicolumn{1}{c}{3.50} & 0     & 1.38  & 2.94  & \multicolumn{1}{c}{2.06} &       &       &       &  \\
+
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+0     & -1    & 1     & 0     & 0     & 1.08  & 1.08  & 1.08  & 1.08  & 0.035 & 0.035 & 0.035 & 0.035 & 0.079 & 0.079 & 0.076 & 0.076 \\
+    1     & -1    & 1     & 0     & 0     & 1.14  & 1.14  & 1.07  & 1.07  & 0.095 & 0.032 & 0.031 & 0.034 & 0.037 & 0.072 & 0.145 & 0.069 \\
+    0     & log(4) & 1     & 0     & 0     & 1.34  & 1.34  & 1.34  & 1.34  & 0.126 & 0.126 & 0.126 & 0.126 & 0.358 & 0.358 & 0.336 & 0.336 \\
+    1     & log(4) & 1     & 0     & 0     & 1.66  & 1.66  & 1.25  & 1.24  & 0.310 & 0.088 & 0.077 & 0.119 & 0.139 & 0.274 & 0.660 & 0.243 \\
+    0     & log(100) & 1     & 0     & 0     & 1.84  & 1.84  & 1.84  & 1.84  & 0.227 & 0.227 & 0.227 & 0.227 & 0.842 & 0.842 & 0.834 & 0.834 \\
+    1     & log(100) & 1     & 0     & 0     & 2.66  & 2.66  & 1.44  & 1.44  & 0.498 & 0.126 & 0.090 & 0.215 & 0.263 & 0.617 & 1.660 & 0.438 \\
+
+    \end{tabular}%
+
+    }
+    \caption{Simulated Equilibrium - No Brand or Store Effect}
+  \label{tab:normal}%
+\end{table}%
+
+\subsection{Brand Effect, No  Store Effects}
+\label{brand effects}
+Now consider the above scenario, except that one of the t-shirts is a branded t-shirt (think Nike, etc). Consumers prefer this t-shirt to the generic brand one, and thus the clothing retailers charge more for the branded t-shirt. 
+
+Table \ref{tab:brand effects - b dom} adds a brand effect to the consumer utility equation. That is, customers have a preference for a good produced with intermediate input from $U_A$ or $U_B$. Here, only $\beta_2 = 0$, while the price coefficient $\beta_1$ and the brand coefficient\footnote{Like the price coefficient, changing the brand coefficient does not change the qualitative outcome of the simulation. Outcomes of changing just the brand effects are shown in Table \ref{} of the Appendix} $\beta_3$ are fixed to some value positive value. We first assume that the dominant brand is brand $B$, which means that the products using inputs from $A$ will generally have a lower market share.
+
+% Table generated by Excel2LaTeX from sheet 'Table 2'
+\begin{table}[h]
+  \centering
+    \setlength{\tabcolsep}{2pt}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}    
+    0     & -1    & 1     & 0     & log(20) & 2.32  & 3.12  & 2.32  & \multicolumn{1}{c}{3.12} & 1.05  & 1.86  & 1.05  & \multicolumn{1}{c}{1.86} &       &       &       &  \\
+    1     & -1    & 1     & 0     & log(20) & 1.31  & 3.11  & 2.54  & \multicolumn{1}{c}{3.09} & 0     & 1.8   & 1.28  & \multicolumn{1}{c}{1.83} &       &       &       &  \\
+    0     & log(4) & 1     & 0     & log(20) & 2.75  & 4.3   & 2.75  & \multicolumn{1}{c}{4.3} & 1.18  & 2.72  & 1.18  & \multicolumn{1}{c}{2.72} &       &       &       &  \\
+    1     & log(4) & 1     & 0     & log(20) & 1.79  & 4.19  & 3.16  & \multicolumn{1}{c}{4.18} & 0     & 2.41  & 1.68  & \multicolumn{1}{c}{2.69} &       &       &       &  \\
+    0     & log(100) & 1     & 0     & log(20) & 3.29  & 5.3   & 3.29  & \multicolumn{1}{c}{5.3} & 1.36  & 3.37  & 1.36  & \multicolumn{1}{c}{3.37} &       &       &       &  \\
+    1     & log(100) & 1     & 0     & log(20) & 2.5   & 5.2   & 4.04  & \multicolumn{1}{c}{5.29} & 0     & 2.7   & 2.45  & \multicolumn{1}{c}{3.7} &       &       &       &  \\
+
+
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+
+    0     & -1    & 1     & 0     & log(20) & 1.27  & 1.26  & 1.27  & 1.26  & 0.021 & 0.188 & 0.021 & 0.188 & 0.044 & 0.700 & 0.265 & 0.265 \\
+    1     & -1    & 1     & 0     & log(20) & 1.31  & 1.31  & 1.26  & 1.26  & 0.055 & 0.183 & 0.016 & 0.187 & 0.021 & 0.672 & 0.313 & 0.255 \\
+    0     & log(4) & 1     & 0     & log(20) & 1.57  & 1.58  & 1.57  & 1.58  & 0.069 & 0.295 & 0.069 & 0.295 & 0.163 & 1.610 & 0.573 & 0.573 \\
+    1     & log(4) & 1     & 0     & log(20) & 1.79  & 1.78  & 1.48  & 1.49  & 0.157 & 0.283 & 0.040 & 0.287 & 0.066 & 1.450 & 0.785 & 0.485 \\
+    0     & log(100) & 1     & 0     & log(20) & 1.93  & 1.93  & 1.93  & 1.93  & 0.131 & 0.351 & 0.131 & 0.351 & 0.357 & 2.370 & 0.932 & 0.932 \\
+    1     & log(100) & 1     & 0     & log(20) & 2.5   & 2.5   & 1.59  & 1.59  & 0.256 & 0.343 & 0.055 & 0.314 & 0.135 & 2.090 & 1.500 & 0.585 \\
+
+    \end{tabular}%
+
+    }
+    
+    \caption{Simulated Equilibria - $B$ Dominant Brand}
+    
+  \label{tab:brand effects - b dom}%
+\end{table}%
+
+There are a few interesting observations in this scenario. The price $p_{1B}$ decreases after integration when market shares are high. We see that the difference in $p_{1B}$ between row 1 and 2 is zero, while the difference between rows 5 and 6 is $-0.11$. In context of the t-shirt scenario, this observation occurs when there are very few choices/substitutes for t-shirts, and the generic t-shirt manufacturer integrates with one of the clothing retailers. As a result, the generic t-shirt price falls in order to draw consumers away from the branded t-shirt, but the price of the branded t-shirt decreases slightly to recapture some of the market.
+
+Some observations remained the same as the no effects case. The price of $p_{1A}$ dropped substantially as a result of EDM. However, the amount that $p_{1A}$ decreased was inversely proportional to the market share. As market share rose, the amount that $p_{1A}$ decreased by was also decreasing. The price $p_{2A}$ increases due to a large RRC effect. 
+
+The scenario where $A$ is the dominant brand is only slightly different compared to the scenario where $B$ is the dominant brand. Most noticeable is the price $p_{1B}$ now increases by a large amount after integration, whereas it would remain even or slightly decrease in the $B$ dominant brand scenario. In this case, the integrated firm has its downstream subsidiary raise the price of good $B$ by such a large amount to grab a large market share. As displayed in the last row of Table \ref{tab:brand effects - a dom}, good $1A$ has a very large market share, stealing almost all of the market from good $2A$ from before integration. This market share stealing phenomenon seems to exacerbate as market share increases - the difference in the market share of good $2A$ is larger between rows 5 and 6 than rows 3 and 4 of Table \ref{tab:brand effects - a dom}. Other effects such as EDM and RRC remain similar to the case where $B$ is the dominant brand.
+
+\begin{table}[h]
+  \centering
+  \setlength{\tabcolsep}{2pt}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}   0     & -1    & 1     & 0     & -4    & 2.17  & 2.04  & 2.17  & \multicolumn{1}{c}{2.04} & 1.13  & 1     & 1.13  & \multicolumn{1}{c}{1} &       &       &       &  \\
+    1     & -1    & 1     & 0     & -4    & 1.12  & 2.1   & 2.23  & \multicolumn{1}{c}{2.06} & 0     & 0.985 & 1.19  & \multicolumn{1}{c}{1.02} &       &       &       &  \\
+    0     & log(40) & 1     & 0     & -4    & 4.07  & 2.47  & 4.07  & \multicolumn{1}{c}{2.47} & 2.64  & 1.05  & 2.64  & \multicolumn{1}{c}{1.05} &       &       &       &  \\
+    1     & log(40) & 1     & 0     & -4    & 2.75  & 3.85  & 4.63  & \multicolumn{1}{c}{2.2} & 0     & 1.1   & 3.5   & \multicolumn{1}{c}{1.06} &       &       &       &  \\
+    0     & log(1000) & 1     & 0     & -4    & 5.61  & 3.04  & 5.61  & \multicolumn{1}{c}{3.04} & 3.79  & 1.22  & 3.79  & \multicolumn{1}{c}{1.22} &       &       &       &  \\
+    1     & log(1000) & 1     & 0     & -4    & 4.49  & 5.57  & 6.92  & \multicolumn{1}{c}{2.69} & 0     & 1.08  & 5.74  & \multicolumn{1}{c}{1.51} &       &       &       &  \\
+
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+ 0     & -1    & 1     & 0     & -4    & 1.04  & 1.04  & 1.04  & 1.04  & 0.039 & 0.001 & 0.039 & 0.001 & 0.087 & 0.002 & 0.041 & 0.041 \\
+    1     & -1    & 1     & 0     & -4    & 1.12  & 1.115 & 1.04  & 1.04  & 0.104 & 0.001 & 0.034 & 0.001 & 0.041 & 0.001 & 0.117 & 0.036 \\
+    0     & log(40) & 1     & 0     & -4    & 1.43  & 1.42  & 1.43  & 1.42  & 0.275 & 0.025 & 0.275 & 0.025 & 1.450 & 0.052 & 0.427 & 0.427 \\
+    1     & log(40) & 1     & 0     & -4    & 2.75  & 2.75  & 1.13  & 1.14  & 0.632 & 0.004 & 0.096 & 0.020 & 0.337 & 0.026 & 1.750 & 0.132 \\
+    0     & log(1000) & 1     & 0     & -4    & 1.82  & 1.82  & 1.82  & 1.82  & 0.363 & 0.087 & 0.363 & 0.087 & 2.760 & 0.212 & 0.819 & 0.819 \\
+    1     & log(1000) & 1     & 0     & -4    & 4.49  & 4.49  & 1.18  & 1.18  & 0.773 & 0.005 & 0.068 & 0.086 & 0.391 & 0.134 & 3.490 & 0.182 \\
+
+    \end{tabular}%
+    }
+    \caption{Simulated Equilibrium - $A$ Dominant Brand}
+  \label{tab:brand effects - a dom}%
+\end{table}%
+
+\subsection{Store Effects, No Brand Effects}
+\label{store effects}
+We now explore simulation results where consumers have no preference between the upstream firms, but have a preference in the downstream retailers. Table \ref{tab:store effects - 2 dom} analyzes the scenario when the downstream firm $D_1$ has a much smaller market share than $D_2$, and backward integrates in order to gain efficiencies in hopes of capturing more market share. 
+
+\begin{table}[h]
+  \centering
+    \setlength{\tabcolsep}{2pt}
+    \resizebox{\textwidth}{!}{
+       \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Eq}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13} 
+    0     & -1    & 1     & log(20) & 0     & 2.27  & 2.27  & 3.09  & \multicolumn{1}{c}{3.09} & 1.22  & 1.22  & 1.47  & \multicolumn{1}{c}{1.47} &       &       &       &  \\
+    1     & -1    & 1     & log(20) & 0     & 1.1   & 2.3   & 3.09  & \multicolumn{1}{c}{3.05} & 0     & 1.21  & 1.51  & \multicolumn{1}{c}{1.47} &       &       &       &  \\
+    0     & log(4) & 1     & log(20) & 0     & 2.63  & 2.63  & 4.24  & \multicolumn{1}{c}{4.24} & 1.46  & 1.46  & 1.79  & \multicolumn{1}{c}{1.79} &       &       &       &  \\
+    1     & log(4) & 1     & log(20) & 0     & 1.35  & 2.68  & 4.1   & \multicolumn{1}{c}{3.99} & 0     & 1.34  & 1.89  & \multicolumn{1}{c}{1.78} &       &       &       &  \\
+    0     & log(100) & 1     & log(20) & 0     & 3.24  & 3.24  & 5.28  & \multicolumn{1}{c}{5.28} & 1.87  & 1.87  & 1.97  & \multicolumn{1}{c}{1.97} &       &       &       &  \\
+    1     & log(100) & 1     & log(20) & 0     & 1.61  & 3.03  & 4.7   & \multicolumn{1}{c}{4.52} & 0     & 1.42  & 2.16  & \multicolumn{1}{c}{1.97} &       &       &       &  \\
+
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+ 
+    0     & -1    & 1     & log(20) & 0     & 1.05  & 1.05  & 1.62  & 1.62  & 0.022 & 0.022 & 0.191 & 0.191 & 0.309 & 0.309 & 0.046 & 0.621 \\
+    1     & -1    & 1     & log(20) & 0     & 1.1   & 1.09  & 1.58  & 1.58  & 0.067 & 0.020 & 0.181 & 0.189 & 0.273 & 0.301 & 0.095 & 0.587 \\
+    0     & log(4) & 1     & log(20) & 0     & 1.17  & 1.17  & 2.45  & 2.45  & 0.074 & 0.074 & 0.297 & 0.297 & 0.638 & 0.638 & 0.175 & 1.460 \\
+    1     & log(4) & 1     & log(20) & 0     & 1.35  & 1.34  & 2.21  & 2.21  & 0.203 & 0.054 & 0.260 & 0.288 & 0.490 & 0.585 & 0.346 & 1.210 \\
+    0     & log(100) & 1     & log(20) & 0     & 1.37  & 1.37  & 3.31  & 3.31  & 0.134 & 0.134 & 0.349 & 0.349 & 0.937 & 0.937 & 0.366 & 2.310 \\
+    1     & log(100) & 1     & log(20) & 0     & 1.61  & 1.61  & 2.54  & 2.55  & 0.304 & 0.073 & 0.275 & 0.331 & 0.595 & 0.759 & 0.607 & 1.540 \\
+
+
+    \end{tabular}%
+
+    }
+    
+    \caption{Simulated Equilibria - 2 Dominant Store}
+    
+  \label{tab:store effects - 2 dom}%
+\end{table}%
+
+As total market share increases, the impact of integration on pricing changes dramatically. For example, the change in $p_{1B}$ is positive when the share of the outside good is a quarter of the initial market size. However, when the share of the outside good is less than five percent (row 5, row 6), integration \textit{lowers} the price of $p_{1B}$. All downstream prices are lower as a result of integration when market share is high. One explanation for this result could be that the dominant downstream firm $D_2$ engages in a price war with $D_1$ to discourage the backwards integration and to maintain its dominant share. This is an effective strategy for $D_2$, as the combined profits of $U_A$ and $D_1$ are lower than the profits of $U_A$ pre-integration, which means that $U_A$ would be hesitant to accept such a buyout offer. However, when initial market share is not high, it is worth it for $U_A$ and $D_1$ to integrate since the $U_A-D_1$ joint profits are higher after integration than before.
+
+EDM is a larger effect in this scenario than in the previous cases. We observe that the price $p_{1A}$ post-integration is actually \textit{lower} than the wholesale price $w_{1A}$ pre-integration. The integrated firm is willing to sell the final product at a lower price than the upstream division would have sold the intermediate good. Again, the explanation would be an aggressive move to obtain more market share, given that consumers have an inherent preference for $D_2$.
+
+When $D_1$ is the dominant downstream firm, integration creates a large RRC effect when market share is high. Between the fifth and sixth rows of Table \ref{tab:store effects - 1 dom}, the wholesale price $w_{2A}$ triples from 1.66 to 4.79 as a result of integration - the largest relative change seen so far. In this case, the new integrated firm has a large market share, thereby able to leverage market power to charge its competitors more. Also noteworthy are the high markups that $D_1$ charges - when market share is high the markups on goods $1A$ and $1B$ reach over $5$.
+
+\begin{table}[h]
+  \centering
+  \setlength{\tabcolsep}{2pt}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}   0     & -1    & 1     & -4    & 0     & 2.17  & 2.17  & 2.04  & \multicolumn{1}{c}{2.05} & 1.08  & 1.08  & 1.04  & \multicolumn{1}{c}{1.04} &       &       &       &  \\
+    1     & -1    & 1     & -4    & 0     & 1.16  & 2.22  & 2.16  & \multicolumn{1}{c}{2.03} & 0     & 1.07  & 1.16  & \multicolumn{1}{c}{1.03} &       &       &       &  \\
+    0     & log(40) & 1     & -4    & 0     & 4.00  & 4.00  & 2.35  & \multicolumn{1}{c}{2.34} & 1.7   & 1.7   & 1.29  & \multicolumn{1}{c}{1.29} &       &       &       &  \\
+    1     & log(40) & 1     & -4    & 0     & 3.10  & 4.36  & 4.10  & \multicolumn{1}{c}{2.18} & 0     & 1.25  & 3.07  & \multicolumn{1}{c}{1.15} &       &       &       &  \\
+    0     & log(1000) & 1     & -4    & 0     & 5.53  & 5.53  & 2.89  & \multicolumn{1}{c}{2.89} & 1.93  & 1.93  & 1.66  & \multicolumn{1}{c}{1.66} &       &       &       &  \\
+    1     & log(1000) & 1     & -4    & 0     & 5.06  & 6.36  & 5.90  & \multicolumn{1}{c}{2.96} & 0     & 1.3   & 4.79  & \multicolumn{1}{c}{1.85} &       &       &       &  \\
+
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+   0     & -1    & 1     & -4    & 0     & 1.09  & 1.09  & 1.00  & 1.01  & 0.039 & 0.039 & 0.001 & 0.001 & 0.043 & 0.043 & 0.084 & 0.002 \\
+    1     & -1    & 1     & -4    & 0     & 1.16  & 1.15  & 1.00  & 1.00  & 0.100 & 0.034 & 0.001 & 0.001 & 0.000 & 0.038 & 0.155 & 0.001 \\
+    0     & log(40) & 1     & -4    & 0     & 2.30  & 2.30  & 1.06  & 1.05  & 0.282 & 0.282 & 0.027 & 0.027 & 0.052 & 0.052 & 1.290 & 0.057 \\
+    1     & log(40) & 1     & -4    & 0     & 3.10  & 3.11  & 1.03  & 1.03  & 0.527 & 0.150 & 0.004 & 0.024 & 0.011 & 0.217 & 2.100 & 0.029 \\
+    0     & log(1000) & 1     & -4    & 0     & 3.60  & 3.60  & 1.23  & 1.23  & 0.361 & 0.361 & 0.093 & 0.093 & 0.083 & 0.053 & 2.600 & 0.229 \\
+    1     & log(1000) & 1     & -4    & 0     & 5.06  & 5.06  & 1.11  & 1.11  & 0.630 & 0.172 & 0.005 & 0.094 & 0.024 & 0.397 & 4.060 & 0.110 \\
+
+    \end{tabular}%
+    }
+    \caption{Simulated Equilibrium - 1 Dominant Store}
+  \label{tab:store effects - 1 dom}%
+\end{table}%
+
+One thing to note is that the outside good has a minimum of at least ten percent market share (rows 5,6 of Table \ref{tab:store effects - 1 dom}). When we consider an even lower outside good market share, the anti-competitive effects of integration become even more amplified. A discussion of these results is in Section \ref{high market share}.
+
+
+\subsection{Combined Brand and Store Effects}
+
+We now turn our attention to simulated equilibria where there are both store and brand effects. For now, assume that there are no interaction effects between the two effects. 
+
+\subsubsection{Consumers Prefer $U_B$ and $D_2$}
+
+In this scenario, Firms $U_A$ and $D_1$ integrate in order to better compete against the dominant firms in the industry, $U_B$ and $D_2$. In an industry with a low outside good market share, this is beneficial to consumers, as retail prices fall across the board. The other retailers and manufacturers engage in a price war with the newly integrated firm in order to keep market share. 
+
+Table \ref{tab:store effects - B, 2 dom} displays the simulation results of such an integration. Even though $U_A-D_1$ has a relatively small market share compared to goods such as $2B$ after integration, there is an observed RRC effect. EDM outweighs any markup effect, likely resulting from the lack of market power that the integrated firm has post-integration. 
+
+\begin{table}[h]
+  \centering
+    \setlength{\tabcolsep}{2pt}
+    \resizebox{\textwidth}{!}{
+       \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Eq}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}  
+    0     & -1    & 1     & log(20) & log(20) & 2.24  & 3.16  & 3.24  & \multicolumn{1}{c}{4.86} & 1.09  & 2.01  & 1.19  & \multicolumn{1}{c}{2.81} &       &       &       &  \\
+    1     & -1    & 1     & log(20) & log(20) & 1.18  & 3.15  & 3.28  & \multicolumn{1}{c}{4.83} & 0     & 1.97  & 1.27  & \multicolumn{1}{c}{2.82} &       &       &       &  \\
+    0     & log(4) & 1     & log(20) & log(20) & 2.5   & 4.03  & 4.12  & \multicolumn{1}{c}{6.08} & 1.21  & 2.74  & 1.32  & \multicolumn{1}{c}{3.28} &       &       &       &  \\
+    1     & log(4) & 1     & log(20) & log(20) & 1.39  & 3.87  & 4.06  & \multicolumn{1}{c}{5.89} & 0     & 2.47  & 1.47  & \multicolumn{1}{c}{3.3} &       &       &       &  \\
+    0     & log(100) & 1     & log(20) & log(20) & 2.76  & 4.78  & 4.8   & \multicolumn{1}{c}{6.87} & 1.37  & 3.39  & 1.39  & \multicolumn{1}{c}{3.47} &       &       &       &  \\
+    1     & log(100) & 1     & log(20) & log(20) & 1.53  & 4.26  & 4.44  & \multicolumn{1}{c}{6.34} & 0     & 2.73  & 1.6   & \multicolumn{1}{c}{3.5} &       &       &       &  \\
+
+
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+     
+    0     & -1    & 1     & log(20) & log(20) & 1.15  & 1.15  & 2.05  & 2.05  & 0.014 & 0.113 & 0.104 & 0.409 & 0.139 & 1.380 & 0.145 & 1.050 \\
+    1     & -1    & 1     & log(20) & log(20) & 1.18  & 1.18  & 2.01  & 2.01  & 0.039 & 0.110 & 0.096 & 0.408 & 0.122 & 1.360 & 0.175 & 1.010 \\
+    0     & log(4) & 1     & log(20) & log(20) & 1.29  & 1.29  & 2.8   & 2.8   & 0.043 & 0.184 & 0.168 & 0.475 & 0.273 & 2.060 & 0.294 & 1.800 \\
+    1     & log(4) & 1     & log(20) & log(20) & 1.39  & 1.4   & 2.59  & 2.59  & 0.105 & 0.177 & 0.146 & 0.467 & 0.215 & 1.980 & 0.391 & 1.590 \\
+    0     & log(100) & 1     & log(20) & log(20) & 1.39  & 1.39  & 3.41  & 3.4   & 0.077 & 0.204 & 0.201 & 0.505 & 0.386 & 2.440 & 0.392 & 2.410 \\
+    1     & log(100) & 1     & log(20) & log(20) & 1.53  & 1.53  & 2.84  & 2.84  & 0.150 & 0.195 & 0.163 & 0.485 & 0.260 & 2.230 & 0.527 & 1.840 \\
+
+
+    \end{tabular}%
+
+    }
+    
+    \caption{Simulated Equilibria - B Dominant Brand, 2 Dominant Store}
+    
+  \label{tab:store effects - B, 2 dom}%
+\end{table}%
+
+Changing market shares mainly affects the prices of $B$ post-integration. If market shares are low/shares of the outside good are high, then prices for good $B$ barely budge after a $U_A-D_1$ integration. However, as market shares increase, the threat of substitution to good $1A$ becomes stronger, lowering the price of good $B$ in both downstream firms. 
+
+\subsubsection{Consumers Prefer $U_B$ and $D_1$}
+The result where $U_B$ is the dominant upstream brand and $D_1$ is the dominant downstream firm does not present interesting new results. EDM dominates any markup that the integrated firm may perform, and the RRC effect remains noticeable for good $2A$. The results are presented in Table \ref{tab:store effects - B, 1 dom} in the appendix. However, in the extreme case when market share of the outside good is near zero, the anti-competitive effects are worth discussing. This particular scenario is discussed in Section \ref{high market share}.
+
+\subsubsection{Consumers Prefer $U_A$ and $D_2$}
+In this scenario, the good $2A$ has the highest initial market share. After integration, the integrated firm substantially decreases the retail price $p_{1A}$, trying to elicit substitution to good $1A$ instead. It keeps $w_{2A}$ very high to capture profits from $D_2$, which is preferred over $D_1$. 
+
+
+\begin{table}[h]
+  \centering
+  \setlength{\tabcolsep}{2pt}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}        0     & -1    & 1     & -3    & 3     & 2.39  & 3.1   & 2.05  & \multicolumn{1}{c}{2.39} & 1.04  & 1.74  & 1.03  & \multicolumn{1}{c}{1.36} &       &       &       &  \\
+    1     & -1    & 1     & -3    & 3     & 1.41  & 3.09  & 2.43  & \multicolumn{1}{c}{2.35} & 0     & 1.68  & 1.41  & \multicolumn{1}{c}{1.32} &       &       &       &  \\
+    0     & log(4) & 1     & -3    & 3     & 3.03  & 4.51  & 2.2   & \multicolumn{1}{c}{2.97} & 1.15  & 2.63  & 1.09  & \multicolumn{1}{c}{1.86} &       &       &       &  \\
+    1     & log(4) & 1     & -3    & 3     & 2.15  & 4.42  & 3.15  & \multicolumn{1}{c}{2.82} & 0     & 2.27  & 2.05  & \multicolumn{1}{c}{1.72} &       &       &       &  \\
+    0     & log(100) & 1     & -3    & 3     & 4.2   & 6.18  & 2.53  & \multicolumn{1}{c}{4.11} & 1.33  & 3.31  & 1.22  & \multicolumn{1}{c}{2.81} &       &       &       &  \\
+    1     & log(100) & 1     & -3    & 3     & 3.57  & 6.13  & 4.48  & \multicolumn{1}{c}{4.06} & 0     & 2.56  & 3.26  & \multicolumn{1}{c}{2.84} &       &       &       &  \\
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+    0     & -1    & 1     & -3    & 3     & 1.35  & 1.36  & 1.02  & 1.03  & 0.024 & 0.238 & 0.002 & 0.024 & 0.027 & 0.447 & 0.354 & 0.026 \\
+    1     & -1    & 1     & -3    & 3     & 1.41  & 1.41  & 1.02  & 1.03  & 0.061 & 0.229 & 0.001 & 0.024 & 0.002 & 0.418 & 0.410 & 0.026 \\
+    0     & log(4) & 1     & -3    & 3     & 1.88  & 1.88  & 1.11  & 1.11  & 0.094 & 0.384 & 0.010 & 0.089 & 0.107 & 1.180 & 0.879 & 0.110 \\
+    1     & log(4) & 1     & -3    & 3     & 2.15  & 2.15  & 1.1   & 1.1   & 0.174 & 0.361 & 0.003 & 0.089 & 0.007 & 0.972 & 1.150 & 0.101 \\
+    0     & log(100) & 1     & -3    & 3     & 2.87  & 2.87  & 1.31  & 1.3   & 0.172 & 0.479 & 0.046 & 0.188 & 0.285 & 2.110 & 1.870 & 0.305 \\
+    1     & log(100) & 1     & -3    & 3     & 3.57  & 3.57  & 1.22  & 1.22  & 0.282 & 0.438 & 0.006 & 0.174 & 0.019 & 0.161 & 2.570 & 0.219 \\
+
+
+
+    \end{tabular}%
+    }
+    \caption{Simulated Equilibrium - A Dominant Brand, 2 Dominant Store}
+  \label{tab:store effects - A, 2 dom}%
+\end{table}%
+
+In Table \ref{tab:store effects - A, 2 dom} we see some of the largest price reductions in relative scale in this scenario, mirroring the reductions in Section \ref{store effects}. For example, in a small outside good share scenario, the price $p_{1A}$ \textit{post}-integration is higher than the wholesale price $w_{1A}$ \textit{pre}-integration. 
+
+However, as the share of the outside good decreases, it becomes less viable for $U_A-D_1$ to integrate. The increased market shared gained does not outweigh the loss in margin due to the price cut, so the overall profits of $U_A-D_1$ are lower jointly than they were separately. 
+
+
+
+
+\subsubsection{Consumers Prefer $U_A$ and $D_1$}
+When the dominant firms in the upstream and downstream want to merge, the result is similar to Section \ref{brand effects} when $U_A$ is the dominant brand. The integrated firm leverages its market power to increase margins post-integration. Not only to the downstream consumers face the consequences, there is also a large RRC effect, with the wholesale price $w_{2A}$ more than doubling under certain parameters. Simulation results are in Table \ref{tab:store effects - A, 1 dom} in the Appendix. Since this is another scenario where $D_1$ is the dominant downstream firm, the anti-competitive effects of integration are worth looking at when the market share of the outside good approaches zero. Section \ref{high market share} discusses this result in detail.
+
+
+\subsection{High Market Shares/Low Share of Outside Good} \label{high market share}
+Throughout the section, the results that have been presented usually have the pre-integration outside good market share between 5 and 90 percent. In other words, the four goods $\{1A, 1B, 2A, 2B\}$ have a combined $10-95$ percent of the entire market pre-integration. While this does not affect much of the analysis conducted above, it has big implications for the scenario when $D_1$ is the dominant downstream firm. 
+
+
+\begin{table}[h]
+  \centering
+  \setlength{\tabcolsep}{2pt}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}       0     & 10    & 1     & -3    & 0     & 5.46  & 5.46  & 3.38  & \multicolumn{1}{c}{3.38} & 2     & 2     & 1.98  & \multicolumn{1}{c}{1.98} &       &       &       &  \\
+    1     & 10    & 1     & -3    & 0     & 6.35  & 7.7   & 7.6   & \multicolumn{1}{c}{4.98} & 0     & 1.35  & 6.43  & \multicolumn{1}{c}{3.82} &       &       &       &  \\
+    0     & 10    & 1     & -3    & 3     & 4.87  & 6.95  & 2.8   & \multicolumn{1}{c}{4.86} & 1.4   & 3.48  & 1.4   & \multicolumn{1}{c}{3.46} &       &       &       &  \\
+    1     & 10    & 1     & -3    & 3     & 5.72  & 8.37  & 6.77  & \multicolumn{1}{c}{6.5} & 0     & 2.64  & 5.57  & \multicolumn{1}{c}{5.31} &       &       &       &  \\
+    0     & 10    & 1     & -3    & -3    & 6.81  & 4.75  & 4.72  & \multicolumn{1}{c}{2.74} & 3.45  & 1.39  & 3.33  & \multicolumn{1}{c}{1.36} &       &       &       &  \\
+    1     & 10    & 1     & -3    & -3    & 7.06  & 8.17  & 8.39  & \multicolumn{1}{c}{3.34} & 0     & 1.12  & 7.28  & \multicolumn{1}{c}{2.24} &       &       &       &  \\
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+  0     & 10    & 1     & -3    & 0     & 3.46  & 3.46  & 1.4   & 1.4   & 0.356 & 0.356 & 0.142 & 0.142 & 0.992 & 0.992 & 2.470 & 0.398 \\
+    1     & 10    & 1     & -3    & 0     & 6.35  & 6.35  & 1.17  & 1.16  & 0.669 & 0.174 & 0.010 & 0.131 & 0.062 & 0.733 & 5.350 & 0.163 \\
+    0     & 10    & 1     & -3    & 3     & 3.47  & 3.47  & 1.4   & 1.4   & 0.203 & 0.508 & 0.080 & 0.205 & 0.397 & 2.480 & 2.470 & 0.399 \\
+    1     & 10    & 1     & -3    & 3     & 5.72  & 5.73  & 1.2   & 1.19  & 0.340 & 0.485 & 0.006 & 0.156 & 0.033 & 2.110 & 4.720 & 0.193 \\
+    0     & 10    & 1     & -3    & -3    & 3.36  & 3.36  & 1.39  & 1.38  & 0.504 & 0.198 & 0.204 & 0.073 & 2.420 & 0.374 & 2.360 & 0.383 \\
+    1     & 10    & 1     & -3    & -3    & 7.06  & 7.05  & 1.11  & 1.1   & 0.845 & 0.014 & 0.011 & 0.086 & 0.081 & 0.208 & 6.060 & 0.108 \\
+    \end{tabular}%
+    }
+    \caption{Simulated Equilibrium - High Market Shares}
+  \label{tab:high market share}%
+\end{table}%
+
+Table \ref{tab:high market share} displays the outcomes when consumers prefer downstream firm $D_1$ and market share of the outside good is very low pre-integration $(< 3\%)$.  We see that post-integration, prices rose across the board, including $p_{1A}$. This is the only scenario where the EDM effect is overwhelmed by a price increase. Row 1 and Row 2 analyzes the case when there is only a preference for $D_1$ and no upstream brand preferences. Rows 3-6 analyze the case when there is a preference for $D_1$ and a brand effect. These rows demonstrate that the brand effect qualitatively provides the same result - prices rise across the board for each downstream good no matter which brand $A$ or $B$ was preferred. When vertical integration happens, it is more likely that backwards integration occurs because profits of $D_1$ are generally higher than the profits of $U_A$ except for the last scenario where $U_A$ and $D_1$ are favored (rows 5 and 6).
+
+A possible scenario involving such a situation is the following: Consider a chain of large hospitals acquiring a major pharmaceutical company. The hospitals can now supply their patients with some drug that has very few substitutes outside of a generic or some inferior alternative. Other health suppliers in the city that these hospitals operate in will be impacted by the RRC effect as the hospital-pharmaceutical integrated firm charges them more for the drug. They can also afford to charge insurers more for the drug, thereby raising the price of the drug to consumers after integration. While such an scenario may seem somewhat unrealistic, any type of market with a dominant downstream firm and few substitute goods can see this effect.
+
+%%%%%%%%%%%%%%%%%%
+% There is some discussion in the vertical integration literature that discusses the RRC effect of backwards integration. 
+%%%%%%%%%%%%%%%%%%
+
+In Section \ref{horizontal effect} we turn our attention solely to these scenarios where the price of $p_{1A}$ rises. We attempt to breakdown these price effects into a RRC, EDM, and Horizontal Integration Effect.
+
+
+
+
+
+
+\section{Horizontal Integration Effect} \label{horizontal effect}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\singlespacing
+\normalsize
+
+
+
+
+\bibliographystyle{apalike}
+\newpage
+\bibliography{references}
+
+
+
+\newpage
+\section{Appendix}
+\label{Appendix}
+
+\begin{table}[h]
+  \centering
+  \setlength{\tabcolsep}{2pt}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}    0     & -1    & 1     & 3     & -3    & 2.39  & 2.04  & 3.1   & \multicolumn{1}{c}{2.39} & 1.36  & 1.01  & 1.74  & \multicolumn{1}{c}{1.04} &       &       &       &  \\
+    1     & -1    & 1     & 3     & -3    & 1.09  & 2.07  & 3.09  & \multicolumn{1}{c}{2.36} & 0     & 0.977 & 1.76  & \multicolumn{1}{c}{1.04} &       &       &       &  \\
+    0     & log(4) & 1     & 3     & -3    & 2.97  & 2.2   & 4.51  & \multicolumn{1}{c}{3.03} & 1.86  & 1.09  & 2.63  & \multicolumn{1}{c}{1.15} &       &       &       &  \\
+    1     & log(4) & 1     & 3     & -3    & 1.43  & 2.52  & 4.34  & \multicolumn{1}{c}{2.8} & 0     & 1.09  & 2.69  & \multicolumn{1}{c}{1.15} &       &       &       &  \\
+    0     & log(100) & 1     & 3     & -3    & 4.11  & 2.53  & 6.17  & \multicolumn{1}{c}{4.2} & 2.81  & 1.22  & 3.3   & \multicolumn{1}{c}{1.33} &       &       &       &  \\
+    1     & log(100) & 1     & 3     & -3    & 2.01  & 3.13  & 5.47  & \multicolumn{1}{c}{3.21} & 0     & 1.12  & 3.62  & \multicolumn{1}{c}{1.36} &       &       &       &  \\
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+    0     & -1    & 1     & 3    & -3     & 1.35  & 1.36  & 1.02  & 1.03  & 0.024 & 0.238 & 0.002 & 0.024 & 0.027 & 0.447 & 0.354 & 0.026 \\
+    1     & -1    & 1     & 3    & -3     & 1.41  & 1.41  & 1.02  & 1.03  & 0.061 & 0.229 & 0.001 & 0.024 & 0.002 & 0.418 & 0.410 & 0.026 \\
+    0     & log(4) & 1     & 3    & -3     & 1.88  & 1.88  & 1.11  & 1.11  & 0.094 & 0.384 & 0.010 & 0.089 & 0.107 & 1.180 & 0.879 & 0.110 \\
+    1     & log(4) & 1     & 3    & -3     & 2.15  & 2.15  & 1.1   & 1.1   & 0.174 & 0.361 & 0.003 & 0.089 & 0.007 & 0.972 & 1.150 & 0.101 \\
+    0     & log(100) & 1     & 3    & -3     & 2.87  & 2.87  & 1.31  & 1.3   & 0.172 & 0.479 & 0.046 & 0.188 & 0.285 & 2.110 & 1.870 & 0.305 \\
+    1     & log(100) & 1     & 3    & -3     & 3.57  & 3.57  & 1.22  & 1.22  & 0.282 & 0.438 & 0.006 & 0.174 & 0.019 & 0.161 & 2.570 & 0.219 \\
+
+
+    \end{tabular}%
+    }
+    \caption{Simulated Equilibrium - B Dominant Brand, 1 Dominant Store}
+  \label{tab:store effects - B, 1 dom}%
+\end{table}%
+
+\newpage
+
+\begin{table}[htbp]
+  \centering
+  \setlength{\tabcolsep}{2pt}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|cccc|cccc|cccc|cccc}
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{8}{c}{Downstream Equilibria}                             &       &       &       &  \\
+\cmidrule{1-13}    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{p\_1A} & \multicolumn{1}{c}{p\_1B} & \multicolumn{1}{c}{p\_2A} & \multicolumn{1}{c}{p\_2B} & \multicolumn{1}{c}{w\_1A} & \multicolumn{1}{c}{w\_1B} & \multicolumn{1}{c}{w\_2A} & \multicolumn{1}{c}{w\_2B} &       &       &       &  \\
+\cmidrule{1-13}     0     & -1    & 1     & -3    & -3    & 2.14  & 2.05  & 2.06  & \multicolumn{1}{c}{1.98} & 1.09  & 1.00  & 1.06  & \multicolumn{1}{c}{0.98} &       &       &       &  \\
+    1     & -1    & 1     & -3    & -3    & 1.12  & 2.13  & 2.13  & \multicolumn{1}{c}{1.74} & 0.00  & 1.00  & 1.13  & \multicolumn{1}{c}{0.74} &       &       &       &  \\
+
+    0     & log(40) & 1     & -3    & -3    & 4.08  & 2.81  & 2.77  & \multicolumn{1}{c}{2.16} & 2.38  & 1.11  & 1.70  & \multicolumn{1}{c}{1.08} &       &       &       &  \\ 
+    1     & log(40) & 1     & -3    & -3    & 2.98  & 4.01  & 4.07  & \multicolumn{1}{c}{2.05} & 0.00  & 1.03  & 3.06  & \multicolumn{1}{c}{1.04} &       &       &       &  \\
+
+    0     & log(1000) & 1     & -3    & -3    & 5.88  & 3.96  & 3.86  & \multicolumn{1}{c}{2.45} & 3.22  & 1.30  & 2.59  & \multicolumn{1}{c}{1.18} &       &       &       &  \\
+    1     & log(1000) & 1     & -3    & -3    & 5.20  & 6.24  & 6.39  & \multicolumn{1}{c}{2.28} & 0.00  & 1.04  & 5.34  & \multicolumn{1}{c}{1.23} &       &       &       &  \\
+    \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       & \multicolumn{1}{c}{} &       &       &       &  \\
+          & \multicolumn{4}{c|}{Parameters (utility fn)} & \multicolumn{4}{c|}{Markups}  & \multicolumn{4}{c|}{Shares}   & \multicolumn{4}{c}{Profits} \\
+    \midrule
+    \multicolumn{1}{c|}{Integration} & \multicolumn{1}{c}{$\beta_0$} & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c|}{$\beta_3$} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{1A} & \multicolumn{1}{c}{1B} & \multicolumn{1}{c}{2A} & \multicolumn{1}{c|}{2B} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} \\
+    \midrule
+    \midrule
+    0     & -1    & 1     & -3    & -3    & 1.05  & 1.05  & 1.00  & 1.00  & 0.041 & 0.002 & 0.002 & 0.000 & 0.048 & 0.002 & 0.046 & 0.002 \\
+    1     & -1    & 1     & -3    & -3    & 1.12  & 1.13  & 1.00  & 1.01  & 0.107 & 0.002 & 0.002 & 0.000 & 0.002 & 0.002 & 0.122 & 0.002 \\
+   
+    0     & log(40) & 1     & -3    & -3    & 1.70  & 1.70  & 1.07  & 1.08  & 0.349 & 0.062 & 0.065 & 0.006 & 0.942 & 0.076 & 0.699 & 0.076 \\
+    1     & log(40) & 1     & -3    & -3    & 2.98  & 2.98  & 1.01  & 1.01  & 0.653 & 0.012 & 0.011 & 0.004 & 0.033 & 0.016 & 1.980 & 0.004 \\
+   
+    0     & log(1000) & 1     & -3    & -3    & 2.66  & 2.66  & 1.27  & 1.27  & 0.466 & 0.158 & 0.175 & 0.036 & 1.950 & 0.247 & 1.660 & 0.266 \\
+    1     & log(1000) & 1     & -3    & -3    & 5.20  & 5.20  & 1.05  & 1.05  & 0.794 & 0.014 & 0.012 & 0.037 & 0.064 & 0.059 & 4.200 & 0.051 \\
+    \end{tabular}%
+    }
+    \caption{Simulated Equilibrium - A Dominant Brand, 1 Dominant Store}
+  \label{tab:store effects - A, 1 dom}%
+\end{table}%
+
+\end{document}
