@@ -1,13 +1,20 @@
+# Linear production
+
+
+#############################################################################
+# Unintegrated downstream firms
+#############################################################################
+
 d_firm_main <- function(p_1, p_2, w, firm_1){
   # offer by firm A to downstream firm 1
   p_1A <- p_1[1]
   
   # offer by firm B to downstream firm 1
   p_1B <- p_1[2]
-   
+  
   # offer by firm A to downstream firm 2
   p_2A <- p_2[1]
-
+  
   # offer by firm B to downstream firm 2
   p_2B <- p_2[2]
   
@@ -15,9 +22,11 @@ d_firm_main <- function(p_1, p_2, w, firm_1){
   p <- c(p_1A, p_1B, p_2A, p_2B)
   
   # get quantities 
-  x = cons_demand(p)
+  x = cons_demand_2(p)
   
   # profits
+  # w is (w_1A, w_2A, w_1B, w_2B)
+  # x is (x_1A, x_1B, x_2A, x_2B)
   pi_1 <- x[1] * (p_1A - w[1]) + x[2] * (p_1B - w[3])
   pi_2 <- x[3] * (p_2A - w[2]) + x[4] * (p_2B - w[4])
   
