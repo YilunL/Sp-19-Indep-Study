@@ -56,3 +56,4 @@ P1A * (p[1] - 1) + P1B * (p[2] - 1)
 ############## returns same thing as above #################
 integrated = 0
 d_firm_main(c(1,2), c(3,4), c(1,1,1,1), 1)
+u_firm_unint(c(1,1), c(2,2))

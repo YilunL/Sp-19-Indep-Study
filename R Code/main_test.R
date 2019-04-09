@@ -103,8 +103,10 @@ if (integrated == 0) {
             method = "BFGS",
             control = list(maxit = 100000, reltol = 1E-12)
           )
+        eq_int_good$w_1A <- firm_A_optim$par[1]
+        eq_int_good$w_2A <- firm_A_optim$par[2]
         new_dist = sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2)
-        out_tol = abs(1 - newdist / old_dist)
+        out_tol = abs(1 - new_dist / old_dist)
       } else {
         firm_B_optim <-
           optim(
@@ -114,6 +116,8 @@ if (integrated == 0) {
             method = "BFGS",
             control = list(maxit = 100000, reltol = 1E-12)
           )
+        eq_int_good$w_1B <- firm_B_optim$par[1]
+        eq_int_good$w_2B <- firm_B_optim$par[2]
         new_dist = sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2)
         out_tol = abs(1 - new_dist / old_dist)
       }

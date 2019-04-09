@@ -19,7 +19,7 @@ u_firm_unint <- function(w_A, w_B){
           w = c(w_A, w_B),
           firm_1 = optim_1,
           method = "BFGS",
-          control = list(maxit = 10000, reltol = 1E-8)
+          control = list(maxit = 100000, reltol = 1E-12)
         )
       eq_downstream_p$p_1A <<- firm_1_optim$par[1]
       eq_downstream_p$p_1B <<- firm_1_optim$par[2]
@@ -36,7 +36,7 @@ u_firm_unint <- function(w_A, w_B){
           w = c(w_A, w_B),
           firm_1 = optim_1,
           method = "BFGS",
-          control = list(maxit = 10000, reltol = 1E-8)
+          control = list(maxit = 100000, reltol = 1E-12)
         )
       eq_downstream_p$p_2A <<- firm_2_optim$par[1]
       eq_downstream_p$p_2B <<- firm_2_optim$par[2]

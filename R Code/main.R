@@ -45,10 +45,10 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 
 eq_int_good <-
   list(
-    w_1A = 1.5, # initial guess for intermediate good costs
-    w_1B = 1.5,
-    w_2A = 1.5,
-    w_2B = 1.5,
+    w_1A = 2, # initial guess for intermediate good costs
+    w_1B = 2,
+    w_2A = 2,
+    w_2B = 2,
     x_1A = x_1A,
     x_1B = x_1B,
     x_2A = x_2A,

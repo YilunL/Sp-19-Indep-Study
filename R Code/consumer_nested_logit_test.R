@@ -30,8 +30,8 @@ cons_demand <- function(p){
   odds_2B = exp(beta_0b - beta_1b * p_2B + beta_2b)
   
   # probabilities
-  P1B_B = odds_1A/(odds_1A + odds_2A)
-  P2B_B = odds_2A/(odds_1A + odds_2A)              
+  P1B_B = odds_1B/(odds_1B + odds_2B)
+  P2B_B = odds_2B/(odds_1B + odds_2B)              
   
   ### Inclusive values
   IV_A = log(odds_1A + odds_2A)
