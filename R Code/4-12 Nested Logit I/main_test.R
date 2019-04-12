@@ -3,20 +3,13 @@
 #####################################################################
 setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
 
-source("upstream_firms.R")
-source("downstream_firms.R")
+source("upstream_firms_test.R")
+source("downstream_firms_test.R")
+source("consumer_nested_logit_test.R")
 
-logit = 0
-nested_logit = 1
-
-if (logit == 1){
-  source("consumer_logit.R")
-}
-if (nested_logit == 1){
-  source("consumer_nested_logit.R")
-}
-
-integrated <- 0  # is Firm A and Firm 1 vertically integrated
+integrated = 1  # is Firm A and Firm 1 vertically integrated
+linear = 0  # downstream firm with linear production function
+cobb_douglas = 0  # downstream firm with cobb-douglas production function
 down_mc_1 <- 0  # downstream marginal cost for firm 1
 down_mc_2 <- 0   # downstream marginal cost for firm 2
 
@@ -32,7 +25,7 @@ set.seed(100) #set a random seed
 #####################################################################
 # 2. Main
 #####################################################################
-# # eq profits
+# eq profits
 pi_A <- 0  #upstream A
 pi_B <- 0  #upstream B
 pi_1 <- 0  #downstream 1
@@ -53,9 +46,9 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 eq_int_good <-
   list(
     w_1A = 2, # initial guess for intermediate good costs
-    w_1B = 1,
+    w_1B = 2,
     w_2A = 2,
-    w_2B = 1,
+    w_2B = 2,
     x_1A = x_1A,
     x_1B = x_1B,
     x_2A = x_2A,
@@ -64,10 +57,10 @@ eq_int_good <-
 
 eq_downstream_p <-
   list(
-    p_1A = 3,  # initial guess for downstream prices
-    p_1B = 3,
-    p_2A = 3,
-    p_2B = 3
+    p_1A = 4,  # initial guess for downstream prices
+    p_1B = 4,
+    p_2A = 4,
+    p_2B = 4
   )
 
 iter = 0
@@ -77,9 +70,9 @@ nruns = 4
 
 if (integrated == 0) {
   for (run in 1:nruns) {
-
+    
     cat("Optimizing unintegrated upstream firms \n")
-
+    
     if (run == 1) {
       out_tol_limit = 1E-10
     } else if (run == 2) {
@@ -89,9 +82,9 @@ if (integrated == 0) {
     } else {
       out_tol_limit = 1E-7
     }
-
+    
     downstream_iter = 0
-
+    
     while ((out_tol > out_tol_limit) & (downstream_iter < 100000)) {
       iter = iter + 1  # count iterations
       optim_A = 1 - optim_A  # optimizing which upstream firm's offer
@@ -114,7 +107,6 @@ if (integrated == 0) {
         eq_int_good$w_2A <- firm_A_optim$par[2]
         new_dist = sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2)
         out_tol = abs(1 - new_dist / old_dist)
-        
       } else {
         firm_B_optim <-
           optim(
@@ -129,9 +121,8 @@ if (integrated == 0) {
         new_dist = sqrt(eq_pi$pi_A ^ 2 + eq_pi$pi_B ^ 2)
         out_tol = abs(1 - new_dist / old_dist)
       }
-      
     }
-
+    
     if(out_tol < out_tol_limit){
       break
     }
@@ -140,9 +131,9 @@ if (integrated == 0) {
 
 if (integrated == 1) {
   for (run in 1:nruns) {
-
+    
     cat("Optimizing integrated upstream firms \n")
-
+    
     if (run == 1) {
       out_tol_limit = 1E-10
     } else if (run == 2) {
@@ -152,9 +143,9 @@ if (integrated == 1) {
     } else {
       out_tol_limit = 1E-7
     }
-
+    
     downstream_iter = 0
-
+    
     while ((out_tol > out_tol_limit) & (downstream_iter < 100000)) {
       iter = iter + 1  # count iterations
       optim_A = 1 - optim_A  # optimizing which upstream firm's offer
@@ -162,7 +153,7 @@ if (integrated == 1) {
       pi_B_old <- eq_pi$pi_B
       
       old_dist <- sqrt(pi_A_old ^ 2 + pi_B_old ^ 2)
-
+      
       # optimize firm A given firm B prices are fixed
       if (optim_A == 1) {
         firm_A_optim <-
@@ -193,13 +184,12 @@ if (integrated == 1) {
         out_tol = abs(1 - new_dist / old_dist)
       }
     }
-
+    
     if(out_tol < out_tol_limit){
       break
     }
   }
 }
-
 
 if (downstream_iter >= 100000) {
   cat("Warning: Upstream firms did not converge within relative tolerance. Check FOCs to ensure that you have indeed found an equilibrium")
