@@ -5,11 +5,18 @@ setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code")
 
 source("upstream_firms.R")
 source("downstream_firms.R")
-source("consumer_logit.R")
 
-integrated = 1  # is Firm A and Firm 1 vertically integrated
-linear = 0  # downstream firm with linear production function
-cobb_douglas = 0  # downstream firm with cobb-douglas production function
+logit = 0
+nested_logit = 1
+
+if (logit == 1){
+  source("consumer_logit.R")
+}
+if (nested_logit == 1){
+  source("consumer_nested_logit.R")
+}
+
+integrated <- 0   # is Firm A and Firm 1 vertically integrated
 down_mc_1 <- 0  # downstream marginal cost for firm 1
 down_mc_2 <- 0   # downstream marginal cost for firm 2
 
@@ -25,7 +32,7 @@ set.seed(100) #set a random seed
 #####################################################################
 # 2. Main
 #####################################################################
-# eq profits
+# # eq profits
 pi_A <- 0  #upstream A
 pi_B <- 0  #upstream B
 pi_1 <- 0  #downstream 1
@@ -46,9 +53,9 @@ x_2B <- 0  # downstream firm 2's demand for intermediate good B
 eq_int_good <-
   list(
     w_1A = 2, # initial guess for intermediate good costs
-    w_1B = 2,
+    w_1B = 1,
     w_2A = 2,
-    w_2B = 2,
+    w_2B = 1,
     x_1A = x_1A,
     x_1B = x_1B,
     x_2A = x_2A,
@@ -57,10 +64,10 @@ eq_int_good <-
 
 eq_downstream_p <-
   list(
-    p_1A = 4,  # initial guess for downstream prices
-    p_1B = 4,
-    p_2A = 4,
-    p_2B = 4
+    p_1A = 3,  # initial guess for downstream prices
+    p_1B = 3,
+    p_2A = 3,
+    p_2B = 3
   )
 
 iter = 0

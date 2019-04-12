@@ -24,8 +24,18 @@ u_firm_unint <- function(w_A, w_B){
           method = "BFGS",
           control = list(maxit = 100000, reltol = 1E-12)
         )
-      eq_downstream_p$p_1A <<- firm_1_optim$par[1]
-      eq_downstream_p$p_1B <<- firm_1_optim$par[2]
+      if (firm_1_optim$par[1] < 10){
+        eq_downstream_p$p_1A <<- firm_1_optim$par[1]
+      } else {
+        eq_downstream_p$p_1A <<- 0
+      }
+      
+      if (firm_1_optim$par[2] < 10){
+        eq_downstream_p$p_1B <<- firm_1_optim$par[2]
+      } else {
+        eq_downstream_p$p_1B <<- 0
+      }
+      
       new_dist = sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2)
       tol = abs(1 - new_dist / old_dist)
 
@@ -41,8 +51,17 @@ u_firm_unint <- function(w_A, w_B){
           method = "BFGS",
           control = list(maxit = 100000, reltol = 1E-12)
         )
-      eq_downstream_p$p_2A <<- firm_2_optim$par[1]
-      eq_downstream_p$p_2B <<- firm_2_optim$par[2]
+      if (firm_2_optim$par[1] < 10){
+        eq_downstream_p$p_2A <<- firm_2_optim$par[1]
+      } else {
+        eq_downstream_p$p_2A <<- 0
+      }
+      
+      if (firm_2_optim$par[2] < 10){
+        eq_downstream_p$p_2B <<- firm_2_optim$par[2]
+      } else {
+        eq_downstream_p$p_2B <<- 0
+      }
       new_dist = sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2)
       tol = abs(1 - new_dist / old_dist)
       
@@ -99,7 +118,7 @@ u_firm_int <- function(w_A, w_B) {
     pi_1_old <- eq_pi$pi_1 # keeping tabs on old profits
     pi_2_old <- eq_pi$pi_2
     old_dist <- sqrt(pi_1_old ^ 2 + pi_2_old ^ 2)
-    
+
     # optimize firm 1 given firm 2 prices are fixed
     if (optim_1 == 1) {
       firm_1_optim <-
@@ -112,11 +131,19 @@ u_firm_int <- function(w_A, w_B) {
           method = "BFGS",
           control = list(maxit = 100000, reltol = 1E-12)
         )
-      eq_downstream_p$p_1A <<- firm_1_optim$par[1]
-      eq_downstream_p$p_1B <<- firm_1_optim$par[2]
+      if (firm_1_optim$par[1] < 10){
+        eq_downstream_p$p_1A <<- firm_1_optim$par[1]
+      } else {
+        eq_downstream_p$p_1A <<- 0
+      }
+      
+      if (firm_1_optim$par[2] < 10){
+        eq_downstream_p$p_1B <<- firm_1_optim$par[2]
+      } else {
+        eq_downstream_p$p_1B <<- 0
+      }
       new_dist = sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2)
       tol = abs(1 - new_dist / old_dist)
-      
       
     } else {
       firm_2_optim <-
@@ -129,8 +156,17 @@ u_firm_int <- function(w_A, w_B) {
           method = "BFGS",
           control = list(maxit = 100000, reltol = 1E-12)
         )
-      eq_downstream_p$p_2A <<- firm_2_optim$par[1]
-      eq_downstream_p$p_2B <<- firm_2_optim$par[2]
+      if (firm_2_optim$par[1] < 10){
+        eq_downstream_p$p_2A <<- firm_2_optim$par[1]
+      } else {
+        eq_downstream_p$p_2A <<- 0
+      }
+      
+      if (firm_2_optim$par[2] < 10){
+        eq_downstream_p$p_2B <<- firm_2_optim$par[2]
+      } else {
+        eq_downstream_p$p_2B <<- 0
+      }
       new_dist = sqrt(eq_pi$pi_1 ^ 2 + eq_pi$pi_2 ^ 2)
       tol = abs(1 - new_dist / old_dist)
       

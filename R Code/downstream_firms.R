@@ -5,7 +5,7 @@
 # Unintegrated downstream firms
 #############################################################################
 
-d_firm_main <- function(p_1, p_2, w, firm_1){
+d_firm_main <- function(p_1, p_2, w, firm_1) {
   # offer by firm A to downstream firm 1
   p_1A <- p_1[1]
   
@@ -21,14 +21,21 @@ d_firm_main <- function(p_1, p_2, w, firm_1){
   # create price vector
   p <- c(p_1A, p_1B, p_2A, p_2B)
   
-  # get quantities 
-  x = cons_demand_2(p)
+  # get quantities
+  x = cons_demand(p)
   
   # profits
   # w is (w_1A, w_2A, w_1B, w_2B)
   # x is (x_1A, x_1B, x_2A, x_2B)
-  pi_1 <- x[1] * (p_1A - w[1]) + x[2] * (p_1B - w[3])
-  pi_2 <- x[3] * (p_2A - w[2]) + x[4] * (p_2B - w[4])
+  for (i in 1:4) {
+    if (p[i] >= 10) {
+      x[i] = 0
+      p[i] = 0
+    }
+  }
+  
+  pi_1 <- x[1] * (p[1] - w[1]) + x[2] * (p[2] - w[3])
+  pi_2 <- x[3] * (p[3] - w[2]) + x[4] * (p[4] - w[4])
   
   eq_pi$pi_1 <<- pi_1
   eq_pi$pi_2 <<- pi_2
@@ -38,8 +45,8 @@ d_firm_main <- function(p_1, p_2, w, firm_1){
   eq_int_good$x_2B <<- x[4]
   
   
-  if(firm_1 == 1){
-    if (integrated == 0){
+  if (firm_1 == 1) {
+    if (integrated == 0) {
       return(-pi_1)
     } else if (integrated == 1) {
       return(-pi_1 - (w[2] * x[3]))
