@@ -2,62 +2,34 @@
 # Unintegrated downstream firms
 #############################################################################
 
-quantities <- function(p_1, p_2){
-  odds_1 = cons_demand_2(p_1, 0)  # store 1
-  odds_2 = cons_demand_2(p_2, 1)  # store 2
-  q_1A = odds_1[1]/(1 + sum(c(odds_1, odds_2)))
-  q_1B = odds_1[2]/(1 + sum(c(odds_1, odds_2)))
-  q_2A = odds_2[1]/(1 + sum(c(odds_1, odds_2)))
-  q_2B = odds_2[2]/(1 + sum(c(odds_1, odds_2)))
-  return(c(q_1A, q_1B, q_2A, q_2B))
-}
-
-quantities_good <- function(p, good){
-  p_1 = c(p[1], p[2])
-  p_2 = c(p[3], p[4])
-  odds_1 = cons_demand_2(p_1, 0)  # store 1
-  odds_2 = cons_demand_2(p_2, 1)  # store 2
-  if (good == "1A"){
-    return(odds_1[1]/(1 + sum(c(odds_1, odds_2))))
-  } 
-  if (good == "1B"){
-    return(odds_1[2]/(1 + sum(c(odds_1, odds_2))))
-  } 
-  if (good == "2A"){
-    return(odds_2[1]/(1 + sum(c(odds_1, odds_2))))
-  } 
-  if (good == "2B"){
-    return(odds_2[2]/(1 + sum(c(odds_1, odds_2))))
-  }
-}
-
-objective <- function(p, w){
+objective_d <- function(p, w){
+  # w is (w_1A, w_2A, w_1B, w_2B)
+  # x is (x_1A, x_1B, x_2A, x_2B)
+  
   penalty = 0
   
-  p_1 = c(p[1], p[2])
-  p_2 = c(p[3], p[4])
+  q = cons_demand_2(p) #q_1A, q_1B, q_2A, q_2B
   
-  q = quantities(p_1, p_2) #q_1A, q_1B, q_2A, q_2B
+  jac = jacobian(func = cons_demand_2, x = p)
+  dq_1A = jac[1, 1:4]
+  dq_1B = jac[2, 1:4]
+  dq_2A = jac[3, 1:4]
+  dq_2B = jac[4, 1:4]
+
   
-  dq_dp_1A = grad(func = quantities_good, x = p, good = "1A")
-  dq_dp_1B = grad(func = quantities_good, x = p, good = "1B")
-  dq_dp_2A = grad(func = quantities_good, x = p, good = "2A")
-  dq_dp_2B = grad(func = quantities_good, x = p, good = "2B")
+  # Firm 1 FOC (need to add integrated FOC)
+  dpi_1_dp_1A = (q[1] + (p[1] - w[1]) * dq_1A[1] 
+                 + (p[2] - w[3])*dq_1B[1])
   
-  
-  # Firm 1 FOC
-  dpi_1_dp_1A = (q[1] + (p[1] - w[1]) * dq_dp_1A[1] 
-                 + (p[2] - w[2])*dq_dp_1A[2])
-  
-  dpi_1_dp_1B = (q[2] + (p[2] - w[2]) * dq_dp_1B[2] 
-                 + (p[1] - w[1])*dq_dp_1B[1])
+  dpi_1_dp_1B = (q[2] + (p[2] - w[3]) * dq_1B[2] 
+                 + (p[1] - w[1])*dq_1A[2])
   
   # Firm 2 FOC
-  dpi_2_dp_2A = (q[3] + (p[3] - w[3]) * dq_dp_2A[3] 
-                 + (p[4] - w[4])*dq_dp_2A[4])
+  dpi_2_dp_2A = (q[3] + (p[3] - w[2]) * dq_2A[3] 
+                 + (p[4] - w[4])*dq_2B[3])
   
-  dpi_2_dp_2B = (q[4] + (p[4] - w[4]) * dq_dp_2B[4] 
-                 + (p[3] - w[3])*dq_dp_2B[3])
+  dpi_2_dp_2B = (q[4] + (p[4] - w[4]) * dq_2B[4] 
+                 + (p[3] - w[2])*dq_2A[4])
   
   penalty = sqrt(dpi_1_dp_1A^2 + dpi_1_dp_1B^2 + dpi_2_dp_2A^2 + dpi_2_dp_2B^2)
   
@@ -65,24 +37,38 @@ objective <- function(p, w){
 }
 
 d_main <- function(w){
+  # w is (w_1A, w_2A, w_1B, w_2B)
+  # x is (x_1A, x_1B, x_2A, x_2B)
   
-  p_1A = 1  # prices
-  p_1B = 1
-  p_2A = 1
-  p_2B = 1
+  p_1A = 2  # prices
+  p_1B = 2
+  p_2A = 2
+  p_2B = 2
   
   p = c(p_1A, p_1B, p_2A, p_2B)
   
   res = optim(
     par = p,
-    fn = objective,
+    fn = objective_d,
     w = w,
     method = "BFGS",
     control = list(maxit = 10000)
     )
   
-  out_q <- quantities(res$par[1:2], res$par[3:4])
+  x <- cons_demand_2(res$par)
+  out_q <<- x
+  out_p <<- res$par
   
-  return(c(res$par, out_q))
-}    
+  if (integrated == 0){
+    pi_1 <- x[1] * (p[1] - w[1]) + x[2] * (p[2] - w[3])
+  }
+
+  if (integrated == 1){
+    pi_1 <- x[1] * (p[1] - w[1]) + x[2] * (p[2] - w[3]) + w[2] * x[3]
+  }
+  
+  pi_2 <- x[3] * (p[3] - w[2]) + x[4] * (p[4] - w[4])
+
+  return(c(out_p, pi_1, pi_2))
+}
 

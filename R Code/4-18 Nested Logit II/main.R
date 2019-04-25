@@ -1,7 +1,7 @@
 #####################################################################
 # 1. Preliminaries
 #####################################################################
-setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code\\4-12 Nested Logit I")
+setwd("G:\\My Drive\\Ivan\\College\\2018-2019\\Indep Study\\R Code\\4-18 Nested Logit II")
 
 source("upstream_firms.R")
 source("downstream_firms.R")
@@ -12,7 +12,7 @@ nested_logit = 1
 if (logit == 1){
   source("consumer_logit.R")
 }
-if (nested_logit == 1){
+if (nested_logit == 1){ 
   source("consumer_nested_logit.R")
 }
 
@@ -27,16 +27,16 @@ foreclosure <- 0 * integrated # dummy to see if firms 1-A stops selling to firm 
 
 M = 1  # market size
 
-set.seed(100) #set a random seed
+set.seed(1003) #set a random seed
 
 #####################################################################
 # 2. Main
 #####################################################################
 # # eq profits
-pi_A <- 0  #upstream A
-pi_B <- 0  #upstream B
-pi_1 <- 0  #downstream 1
-pi_2 <- 0  #downstream 2
+pi_A <- .1  #upstream A
+pi_B <- .1  #upstream B
+pi_1 <- .1  #downstream 1
+pi_2 <- .1  #downstream 2
 eq_pi <- list(
   pi_A = pi_A,
   pi_B = pi_B,
@@ -72,7 +72,6 @@ eq_downstream_p <-
 
 iter = 0
 out_tol = 1
-optim_A = 0
 nruns = 4
 
 if (integrated == 0) {
@@ -93,6 +92,7 @@ if (integrated == 0) {
     downstream_iter = 0
 
     while ((out_tol > out_tol_limit) & (downstream_iter < 100000)) {
+      optim_A = sample(c(0,1), 1)
       iter = iter + 1  # count iterations
       optim_A = 1 - optim_A  # optimizing which upstream firm's offer
       pi_A_old <- eq_pi$pi_A # keeping tabs on old profits
@@ -156,6 +156,7 @@ if (integrated == 1) {
     downstream_iter = 0
 
     while ((out_tol > out_tol_limit) & (downstream_iter < 100000)) {
+      optim_A = 1 - sample(c(0,1), 1)
       iter = iter + 1  # count iterations
       optim_A = 1 - optim_A  # optimizing which upstream firm's offer
       pi_A_old <- eq_pi$pi_A # keeping tabs on old profits

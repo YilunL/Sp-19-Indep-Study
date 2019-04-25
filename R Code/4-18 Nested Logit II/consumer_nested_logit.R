@@ -65,10 +65,10 @@ cons_demand <- function (p) {
   p_2B <- p[4]
 
   ### params in nest A
-  beta_0a = 1 # intercept
+  beta_0a = -1 # intercept
   beta_1a = 1  # price effect
   beta_2a = 0  # store effect for store 2
-  lambda_A = .1
+  lambda_A = .9
 
   # Nest of Brand A goods
   odds_1A = exp((beta_0a - beta_1a * p_1A)/lambda_A)
@@ -79,7 +79,7 @@ cons_demand <- function (p) {
   P2A_A = odds_2A/(odds_1A + odds_2A)
 
   ### params in nest B
-  beta_0b = 2 # intercept
+  beta_0b = -1 # intercept
   beta_1b = 1  # price effect
   beta_2b = 0  # store effect for store 2
   beta_3 = 0 # brand effect B
